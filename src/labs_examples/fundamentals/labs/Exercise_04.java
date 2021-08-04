@@ -13,7 +13,10 @@ public class Exercise_04 {
     public static void main(String[] args) {
 
         int i = 1;
+        boolean bool = false;
+
         System.out.println("int i is: " + i);
+        System.out.println("boolean bool is:  " + bool);
 
         // write your code below
 
