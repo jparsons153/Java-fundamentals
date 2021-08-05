@@ -25,5 +25,14 @@ public class Exercise_02 {
 
         // write code here
 
+        // Widening
+        int i = 10;
+        double number = i;
+        System.out.println("double = " + number);
+
+        // Narrowing
+        double number2 = 10.5;
+        int j = (int) number2;
+        System.out.println(" Int = " + j);
     }
 }

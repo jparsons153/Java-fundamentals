@@ -12,6 +12,24 @@ class ArithmeticOperators {
 
         // write your code below
 
+        int a = 10;
+        int b = 12;
+
+        // addition
+        int c = a + b;
+
+        // subtraction
+        int d = b - a;
+
+        // multiplication
+        int e = a*b;
+
+        // division
+        int f = b/a;
+
+        // modulus
+        int g = b%a;
+
     }
 
 }

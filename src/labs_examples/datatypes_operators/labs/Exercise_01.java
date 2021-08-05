@@ -18,6 +18,12 @@ public class Exercise_01 {
 
         // write code here
 
+        int i = 10;
+        double deci = 5.23;
+        float number = 20;
+        char letter = 'a';
+
+        System.out.println("this is my random collection of variables " + "int = " + i + ", double = " + deci + ", float = " + number + ", char = " + letter);
     }
 }
 

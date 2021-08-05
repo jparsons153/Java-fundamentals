@@ -25,5 +25,9 @@ public class Exercise_07 {
 
         // write completed code here
 
+        System.out.println("number of days entered = " + days);
+        int seconds = days*24*60*60;
+        System.out.println(days + " = " + seconds + " seconds");
+
     }
 }

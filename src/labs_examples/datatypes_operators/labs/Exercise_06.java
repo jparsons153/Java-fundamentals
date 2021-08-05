@@ -14,5 +14,19 @@ public class Exercise_06 {
 
         // write code here
 
+        double pie = 3.14;
+        double radius = 3.14;
+        double height = 5;
+
+        // volume calculation
+        double volume = pie*radius*radius*height;
+
+        System.out.println("volume of cylinder with a radius of " + radius + " and a height of " + height + " = " + volume);
+
+        // surface area calculation
+        double surface_area = 2*pie*radius*(height + radius);
+
+        System.out.println("surface area of cylinder with a radius of " + radius + " and a height of " + height + " = " + surface_area);
+
     }
 }
