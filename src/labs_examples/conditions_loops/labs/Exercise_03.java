@@ -1,5 +1,7 @@
 package labs_examples.conditions_loops.labs;
 
+import java.util.Scanner;
+
 /**
  * Conditions and Loops Exercise 3: Months of the year
  *
@@ -9,5 +11,17 @@ package labs_examples.conditions_loops.labs;
  */
 
 public class Exercise_03 {
+
+   public static void main (String[] args) {
+
+    // create scanner
+    Scanner scanner = new Scanner(System.in);
+    // prompt user
+        System.out.print("Enter a number to determine day of the week: ");
+    // assign input to variable as int
+    int number = scanner.nextInt();
+
+    
+
 
 }

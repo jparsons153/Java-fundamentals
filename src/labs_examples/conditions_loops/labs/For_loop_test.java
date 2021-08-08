@@ -21,5 +21,11 @@ public class For_loop_test {
             }
             System.out.println("Outer count = " + outerCount);
         }
+        int val = 0;
+        for (int i = 0; i < 101; i++) {
+            val = i + val;
+        }
+        System.out.println(val);
+        }
     }
-}
+
