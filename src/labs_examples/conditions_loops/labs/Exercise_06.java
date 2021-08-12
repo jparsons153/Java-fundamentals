@@ -8,4 +8,14 @@ package labs_examples.conditions_loops.labs;
  */
 
 public class Exercise_06 {
+
+    public static void main(String[] args) {
+        int count = 0;
+        int val = 0;
+        while (count < 100) {
+            count++;
+            val = count + val;
+        }
+        System.out.println(val);
+    }
 }
