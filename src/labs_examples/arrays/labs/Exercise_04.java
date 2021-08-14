@@ -9,5 +9,19 @@ package labs_examples.arrays.labs;
  */
 
 public class Exercise_04 {
+    public static void main(String[] args) {
 
+        int[][] irreg_array = {
+                {546, 23},
+                {123, 345, 87},
+                {345, 87, 907, 45}
+        };
+
+        for (int i = 0; i < irreg_array.length; i++) {
+            for (int j =0; j < irreg_array[i].length; j++) {
+                System.out.print(irreg_array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }
