@@ -1,21 +1,23 @@
 package labs_examples.objects_classes_methods.labs.objects;
 
+// updated exercise_01 for exercise_02 & exercise_05
+
 public class Exercise_01 {
     public static void main(String[] args) {
 
-        Manufacturer manufacturer = new Manufacturer("Bowing");
-        PlaneEngine engineModel = new PlaneEngine("747");
-        Payload payload = new Payload(120);
-        Wingspan wingspan = new Wingspan(300);
 
-        Airplane Bowing747 = new Airplane(manufacturer, engineModel, 120, 300, 100, 50);
-        System.out.println(Bowing747.toString());
+        Airplane Boeing747 = new Airplane("Boeing", "747", 113000, 64.4, 238840, 50);
+        System.out.println(Boeing747.toString());
+
+        Airplane AirbusA380 = new Airplane("Airbus", "A380", 150000);
+        System.out.println(AirbusA380.toString());
+
     }
 
-    static class Manufacturer {
+    static class Make {
         private String planeModel;
 
-        public Manufacturer(String planeModel) {
+        public Make(String planeModel) {
             this.planeModel = planeModel;
         }
 
@@ -29,7 +31,7 @@ public class Exercise_01 {
 
         @Override
         public String toString() {
-            return "Manufacturer{" +
+            return "Make{" +
                     "planeModel='" + planeModel + '\'' +
                     '}';
         }
@@ -48,6 +50,13 @@ public class Exercise_01 {
 
         public void setEngineModel(String engineModel) {
             this.engineModel = engineModel;
+        }
+
+        @Override
+        public String toString() {
+            return "PlaneEngine{" +
+                    "engineModel='" + engineModel + '\'' +
+                    '}';
         }
     }
 
@@ -74,57 +83,61 @@ public class Exercise_01 {
         }
     }
 
-        static class Wingspan {
-            private double totalLength;
+    static class Wingspan {
+        private double totalLength;
 
-            public Wingspan(double totalLength) {
-                this.totalLength = totalLength;
-            }
-
-            public double getTotalLength() {
-                return totalLength;
-            }
-
-            public void setTotalLength(double totalLength) {
-                this.totalLength = totalLength;
-            }
-
-            @Override
-            public String toString() {
-                return "Wingspan{" +
-                        "totalLength=" + totalLength +
-                        '}';
-            }
+        public Wingspan(double totalLength) {
+            this.totalLength = totalLength;
         }
 
-        static class Airplane {
-            Exercise_01.Manufacturer manufacturer;
-            PlaneEngine engine;
-            int payload;
-            int wingspan;
-            double fuelCapacity;
-            int currentFuelLevel;
-
-            public Airplane(Exercise_01.Manufacturer manufacturer, PlaneEngine engine, int payload, int wingspan, double fuelCapacity, int currentFuelLevel) {
-                this.manufacturer = manufacturer;
-                this.engine = engine;
-                this.payload = payload;
-                this.wingspan = wingspan;
-                this.fuelCapacity = fuelCapacity;
-                this.currentFuelLevel = currentFuelLevel;
-            }
-
-            @Override
-            public String toString() {
-                return "Airplane{" +
-                        "manufacturer=" + manufacturer +
-                        ",\n engine=" + engine +
-                        ",\n  payload=" + payload +
-                        ",\n  wingspan=" + wingspan +
-                        ",\n  fuelCapacity=" + fuelCapacity +
-                        ",\n  currentFuelLevel=" + currentFuelLevel +
-                        '}';
-            }
+        public double getTotalLength() {
+            return totalLength;
         }
-}
+
+        public void setTotalLength(double totalLength) {
+            this.totalLength = totalLength;
+        }
+
+        @Override
+        public String toString() {
+            return "Wingspan{" +
+                    "totalLength=" + totalLength +
+                    '}';
+        }
+    }
+
+    static class Airplane {
+        String make;
+        String engine;
+        int payload;
+        double wingspan;
+        double fuelCapacity;
+        int currentFuelCapacity_percent;
+
+        public Airplane(String make, String engine, int payload) {
+            this.make = make;
+            this.engine = engine;
+            this.payload = payload;
+
+        }
+
+        public Airplane(String make, String engine, int payload, double wingspan, double fuelCapacity, int currentFuelCapacity_percent) {
+            this.make = make;
+            this.engine = engine;
+            this.payload = payload;
+            this.wingspan = wingspan;
+            this.fuelCapacity = fuelCapacity;
+            this.currentFuelCapacity_percent = currentFuelCapacity_percent;
+
+        }
+        @Override
+        public String toString() {
+            return "Airplane{" +
+                    "make='" + make + '\'' +
+                    ", engine='" + engine + '\'' +
+                    ", payload=" + payload +
+                    '}';
+        }
+    }
+            }
 
