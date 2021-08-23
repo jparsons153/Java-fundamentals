@@ -31,8 +31,9 @@ class PassingValues {
         System.out.println("before a:" + a);
         System.out.println("before b:" + b);
     }
-    public static void someOtherMethod(double a, double b){
-        a = a*10;
+
+    public static void someOtherMethod(double a, double b) {
+        a = a * 10;
         System.out.println(a);
         b = b * 20;
         System.out.println(b);

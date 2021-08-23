@@ -7,9 +7,9 @@ class Vehicle {
     }
 }
 
-class Person {
+class Person1 {
     String name;
-    public Person(String name){
+    public Person1(String name){
         this.name = name;
     }
 }
@@ -17,7 +17,7 @@ class Person {
 public class PersonVehicleAssociation {
     public static void main(String[] args) {
         Vehicle v = new Vehicle("XTerra");
-        Person p = new Person("Kim");
+        Person1 p = new Person1("Kim");
         System.out.println(p.name + " drives an " + v.model);
     }
 }

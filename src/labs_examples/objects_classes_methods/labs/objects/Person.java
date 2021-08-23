@@ -4,16 +4,27 @@ package labs_examples.objects_classes_methods.labs.objects;
 
 public class Person {
     // instance variables
-    int age;
+   public int age;
     double height;
     String name;
 
     // constructors
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", height=" + height +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public Person(int age, double height, String name) {
         this.age = age;
         this.height = height;
         this.name = name;
+
+
     }
 
     public Person(int age, String name) {
@@ -25,5 +36,6 @@ public class Person {
         this.name = name;
         this.height = height;
     }
+
 }
 
