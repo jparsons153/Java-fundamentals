@@ -26,8 +26,13 @@ public class Exercise_01 {
             // assign input to array
             numbers[i] = scanner.nextInt();
         }
+        int total =0;
         for (int numb : numbers) {
             System.out.print(numbers[numb]);
+            total = numb + total;
         }
+        System.out.println("\n");
+        System.out.println("Sum of all numbers entered is " + total);
+        System.out.println("Average of all numbers entered is " + total/10);
     }
 }
