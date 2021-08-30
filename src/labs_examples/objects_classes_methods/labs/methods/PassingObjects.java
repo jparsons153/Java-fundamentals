@@ -6,7 +6,7 @@ import labs_examples.objects_classes_methods.labs.objects.Person;
 
 public class PassingObjects {
     public static void main(String[] args) {
-        Person john = new Person (32, 65, "John");
+        Person john = new Person(32, 65, "John");
         System.out.println(john.toString());
 
         addYearToPerson(john);
@@ -16,5 +16,4 @@ public class PassingObjects {
     public static void addYearToPerson(Person john) {
         john.age = john.age + 1;
     }
-    }
-
+}
