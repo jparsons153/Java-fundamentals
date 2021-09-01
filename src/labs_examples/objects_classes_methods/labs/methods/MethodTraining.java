@@ -1,93 +1,114 @@
 package labs_examples.objects_classes_methods.labs.methods;
 
-import labs_examples.objects_classes_methods.labs.objects.Person;
-
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
 public class MethodTraining {
-// 1) method overloading
-
-    public static int addition(int a, int b) {
-        return a + b;
-    }
-
-    public static int addition(int a, int b, int c) {
-        return a + b + c;
-    }
-
-    public static int addition(double a, double b, double c) {
-        return ((int) (a + b + c));
-    }
-}
-
-// 2) pass by value vs pass by reference
-// pass by value
-class PassingValues {
     public static void main(String[] args) {
+
         double a = 12;
         double b = 14;
 
+        // Exercise 01
+        double result = addition(a,b);
+        System.out.println("a + b = " +result);
+
+        //Exercise 02
         System.out.println("before a:" + a);
         System.out.println("before b:" + b);
-
         someOtherMethod(a, b);
-
         System.out.println("before a:" + a);
-        System.out.println("before b:" + b);
-    }
+        System.out.println("before b:" + b + "\n");
 
-    public static void someOtherMethod(double a, double b) {
+        // Exercise 03 Return largest number
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[4];
+        for (int i = 0; i < 4; i++){
+            System.out.println("Enter a number: "); // prompt user and assign input into array
+            numbers[i] = scanner.nextInt();
+        }
+        int max = ReturnLargest(numbers); // invoke method to return largest number
+        System.out.println("\n" + "Max value = " + max);
+
+        // Exercise 04 Count number of consonants
+        Scanner consonants = new Scanner(System.in);
+        out.println("\n" +"Enter a word to return the number of consonants in that word: ");
+        String str = consonants.next();
+        int count = CountConsonants(str);
+        System.out.println("Number of consonants in word entered = " + count);
+
+        // Exercise 05 Determine if Prime number
+        Scanner number = new Scanner(System.in);
+        out.println("\n" + "Enter a number to check if Prime: ");
+        int n = number.nextInt();
+        boolean bool = isPrime(n);
+        System.out.println("Is number entered Prime = " +bool);
+
+        // Exercise 06 return largest & smallest numbers in an array
+        int[] arr = {55, 27, 26, 98, 7, 31, 19};
+        System.out.print("\n" + "Contents of array ");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        int[] returnArray = MinMaxArray(arr);
+        System.out.println("\n" + "Min & max numbers of entered array = ");
+        for (int i : returnArray) {
+            System.out.print(i + " ");
+        }
+
+        // Exercise 07 method that takes 3 arguments (int maxNum, int divisor1, int divisor2) and returns an Integer Arraylist.
+        // In this method create an Integer ArrayList and populate it with each number between zero and maxNum that is
+        //divisible by both divisor1 and divisor2. Then return this ArrayList. After calling this method, print out the result
+        // length of the returned list
+
+
+        // Exercise 08 method that will reverse an array in place use only one extra temp variable
+            int[] nums = {45, 87, 62, 99, 1, 42, 12};
+            System.out.print("\n \n" + "Contents of array ");
+            for (int j : nums) {
+                System.out.print(j + " ");
+            }
+            ReverseArray(nums); //invoke method to Reverse Array and print result
+
+    } // Main method
+
+
+
+    public static int addition(int a, int b) { // method exercise 01 method overloading
+        return a + b;}
+    public static double addition(double a, double b) {
+        return a + b;}
+    public static int addition(int a, int b, int c) {
+        return a + b + c;}
+    public static double addition(double a, double b, double c) {
+        return ((int) (a + b + c));}
+
+    public static void someOtherMethod(double a, double b) { // method exercise 02 02) pass by value
         a = a * 10;
         System.out.println(a);
         b = b * 20;
         System.out.println(b);
     }
-}
 
-// Exercise 02 2) pass by reference - see separate file (public class)
+// Exercise 02 2) pass by reference - see separate file PassingObjects (public class)
 
-// Exercise 03 Return largest number
-class ReturnLargestNumber {
-    public static void main(String[] args) {
 
-        // create scanner
-        Scanner scanner = new Scanner(System.in);
-        // create array
-        int[] numbers = new int[4];
-
-        for (int i = 0; i < 4; i++){
-            // prompt user
-            System.out.print("Enter a number:  ");
-            // assign input to array
-            numbers[i] = scanner.nextInt();
-        }
+    public static int ReturnLargest(int[] numbers){  // method for exercise 03 Return Largest number
         int max = numbers[0];
         for (int i =0; i < 4; i++){
             if (numbers[i] < max)
                 continue;
             max = numbers[i];
         }
-        System.out.println("Max value = " + max);
-
+        System.out.println("Numbers entered = ");
         for (int n : numbers) {
             System.out.print(n);
         }
+        return max;
     }
-}
 
-// Exercise 04 count consonants
-
-class CountConsonants {
-    public static void main(String[] args) {
-// create scanner
-        Scanner scanner = new Scanner(System.in);
-        // prompt user
-        out.println("Enter a word to return the number of consonants in that word: ");
-        // assign input to string
-        String str = scanner.next();
-
+    public static int CountConsonants(String str) { // method for exercise 04 count consonants
         String conson = "bcdfghjklmnpqrstvwxyz";
 
         int count = 0;
@@ -98,14 +119,9 @@ class CountConsonants {
                 count++;
             }
         }
-        System.out.println("Number of consonants in word entered = " + count);
+        return count;
     }
-}
-
-// Exercise 05 Determine if Prime number
-class checkPrime {
-
-    static boolean isPrime(int n){
+    public static boolean isPrime(int n){ // method for exercise 05 check if Prime number
         if (n <= 1)
             return false;
         if (n<= 3)
@@ -121,50 +137,43 @@ class checkPrime {
         return true;
     }
 
-    public static void main(String[] args) {
-        // create scanner
-        Scanner scanner = new Scanner(System.in);
-        // prompt user
-        out.println("Enter a number to check if Prime: ");
-        // assign input to int n
-        int n = scanner.nextInt();
+    public static int[] MinMaxArray(int[] arr){ // method for exercise 06 return array of min & max numbers
+        int max = arr[0];
+        int min = arr[0];
 
-        boolean bool = isPrime(n);
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] > max)
+                max = arr[i];
+            else if(arr[i]<min)
+                min=arr[i];
 
-        System.out.println(bool);
+        }
+        int[]returnArray = {max,min};
+        return returnArray;
     }
-}
 
-// Exercise 06 return largest & smallest numbers in an array
-
-
-
-// Exercise 07 method that takes 3 arguments (int maxNum, int divisor1, int divisor2) and returns an Integer Arraylist.
-//        In this method create an Integer ArrayList and populate it with each number between zero and maxNum that is
-//        divisible by both divisor1 and divisor2. Then return this ArrayList. After calling this method, print out the
-//        length of the returned list
-
-
-// Exercise 08 method that will reverse an array in place use only one extra temp variable
-class Reverse_Array {
-    public static void main(String[] args) {
-        int[] nums = {45, 87, 62, 99, 1, 42, 12};
-
+    public static void ReverseArray(int[] nums) { //method for exercise 08 Reverse array
         int temp; // temporary variable for storing number
 
-        // nums.length/2 as each number is swapped with one other
-        for (int i = 0; i < nums.length / 2; i++) {
+        for (int i = 0; i < nums.length / 2; i++) { // nums.length/2 as each number is swapped with one other
             temp = nums[nums.length - 1 - i];
             nums[nums.length - 1 - i] = nums[i];
             nums[i] = temp;
         }
-        System.out.print("Contents of array after for loop - ");
-        // print each element of the array to verify reverse order
-        for (int i : nums) {
+        System.out.println("Contents of reverse array ");
+        for (int i : nums) { // print each element of the array to verify reverse order
             System.out.print(i + " ");
         }
     }
-}
+
+
+} // end of Method Training Class
+
+
+
+
+
+
 
 
 
