@@ -1,5 +1,6 @@
 package labs_examples.objects_classes_methods.labs.methods;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -11,8 +12,8 @@ public class MethodTraining {
         double b = 14;
 
         // Exercise 01
-        double result = addition(a,b);
-        System.out.println("a + b = " +result);
+        double result = addition(a, b);
+        System.out.println("a + b = " + result);
 
         //Exercise 02
         System.out.println("before a:" + a);
@@ -24,7 +25,7 @@ public class MethodTraining {
         // Exercise 03 Return largest number
         Scanner scanner = new Scanner(System.in);
         int[] numbers = new int[4];
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             System.out.println("Enter a number: "); // prompt user and assign input into array
             numbers[i] = scanner.nextInt();
         }
@@ -33,7 +34,7 @@ public class MethodTraining {
 
         // Exercise 04 Count number of consonants
         Scanner consonants = new Scanner(System.in);
-        out.println("\n" +"Enter a word to return the number of consonants in that word: ");
+        out.println("\n" + "Enter a word to return the number of consonants in that word: ");
         String str = consonants.next();
         int count = CountConsonants(str);
         System.out.println("Number of consonants in word entered = " + count);
@@ -43,7 +44,7 @@ public class MethodTraining {
         out.println("\n" + "Enter a number to check if Prime: ");
         int n = number.nextInt();
         boolean bool = isPrime(n);
-        System.out.println("Is number entered Prime = " +bool);
+        System.out.println("Is number entered Prime = " + bool);
 
         // Exercise 06 return largest & smallest numbers in an array
         int[] arr = {55, 27, 26, 98, 7, 31, 19};
@@ -62,27 +63,49 @@ public class MethodTraining {
         //divisible by both divisor1 and divisor2. Then return this ArrayList. After calling this method, print out the result
         // length of the returned list
 
+        Scanner maxNumber = new Scanner(System.in);
+        out.println("\n \n" + "Enter a max number: ");
+        int maxNum = maxNumber.nextInt();
+
+        Scanner div1 = new Scanner(System.in);
+        out.println("\n" + "Enter divisor number 1: ");
+        int divisor1 = div1.nextInt();
+
+        Scanner div2 = new Scanner(System.in);
+        out.println("\n" + "Enter divisor number 2: ");
+        int divisor2 = div2.nextInt();
+
+        ArrayList<Integer> list = IntArrayList(maxNum, divisor1, divisor2);
+        for (int k : list) {
+            System.out.print(k + " ");
+        }
 
         // Exercise 08 method that will reverse an array in place use only one extra temp variable
-            int[] nums = {45, 87, 62, 99, 1, 42, 12};
-            System.out.print("\n \n" + "Contents of array ");
-            for (int j : nums) {
-                System.out.print(j + " ");
-            }
-            ReverseArray(nums); //invoke method to Reverse Array and print result
+        int[] nums = {45, 87, 62, 99, 1, 42, 12};
+        System.out.print("\n \n" + "Contents of array ");
+        for (int j : nums) {
+            System.out.print(j + " ");
+        }
+        ReverseArray(nums); //invoke method to Reverse Array and print result
 
     } // Main method
 
 
-
     public static int addition(int a, int b) { // method exercise 01 method overloading
-        return a + b;}
+        return a + b;
+    }
+
     public static double addition(double a, double b) {
-        return a + b;}
+        return a + b;
+    }
+
     public static int addition(int a, int b, int c) {
-        return a + b + c;}
+        return a + b + c;
+    }
+
     public static double addition(double a, double b, double c) {
-        return ((int) (a + b + c));}
+        return ((int) (a + b + c));
+    }
 
     public static void someOtherMethod(double a, double b) { // method exercise 02 02) pass by value
         a = a * 10;
@@ -94,9 +117,9 @@ public class MethodTraining {
 // Exercise 02 2) pass by reference - see separate file PassingObjects (public class)
 
 
-    public static int ReturnLargest(int[] numbers){  // method for exercise 03 Return Largest number
+    public static int ReturnLargest(int[] numbers) {  // method for exercise 03 Return Largest number
         int max = numbers[0];
-        for (int i =0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             if (numbers[i] < max)
                 continue;
             max = numbers[i];
@@ -121,38 +144,49 @@ public class MethodTraining {
         }
         return count;
     }
-    public static boolean isPrime(int n){ // method for exercise 05 check if Prime number
+
+    public static boolean isPrime(int n) { // method for exercise 05 check if Prime number
         if (n <= 1)
             return false;
-        if (n<= 3)
+        if (n <= 3)
             return true;
 
         // Check if can skip middle five numbers
-        if (n%2 == 0 || n%3 == 0)
+        if (n % 2 == 0 || n % 3 == 0)
             return false;
 
-        for (int i = 5; i * i <= n; i = i +6)
-            if (n % i == 0 || n % (i+2) == 0)
+        for (int i = 5; i * i <= n; i = i + 6)
+            if (n % i == 0 || n % (i + 2) == 0)
                 return false;
         return true;
     }
 
-    public static int[] MinMaxArray(int[] arr){ // method for exercise 06 return array of min & max numbers
+    public static int[] MinMaxArray(int[] arr) { // method for exercise 06 return array of min & max numbers
         int max = arr[0];
         int min = arr[0];
 
-        for(int i=0; i<arr.length; i++){
-            if(arr[i] > max)
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max)
                 max = arr[i];
-            else if(arr[i]<min)
-                min=arr[i];
+            else if (arr[i] < min)
+                min = arr[i];
 
         }
-        int[]returnArray = {max,min};
+        int[] returnArray = {max, min};
         return returnArray;
     }
 
-    public static void ReverseArray(int[] nums) { //method for exercise 08 Reverse array
+    private static ArrayList<Integer> IntArrayList(int maxNum, int divisor1, int divisor2) { //method for exercise 07
+        ArrayList<Integer> list = new ArrayList();
+
+        for(int index = 0; index < maxNum; index ++){
+            if (index%divisor1 == 0 & index%divisor2 ==0){
+            list.add(index);}
+        }
+        return list;
+    }
+
+    private static void ReverseArray(int[] nums) { //method for exercise 08 Reverse array
         int temp; // temporary variable for storing number
 
         for (int i = 0; i < nums.length / 2; i++) { // nums.length/2 as each number is swapped with one other
@@ -160,7 +194,7 @@ public class MethodTraining {
             nums[nums.length - 1 - i] = nums[i];
             nums[i] = temp;
         }
-        System.out.println("Contents of reverse array ");
+        System.out.println("\n" + "Contents of reverse array ");
         for (int i : nums) { // print each element of the array to verify reverse order
             System.out.print(i + " ");
         }
