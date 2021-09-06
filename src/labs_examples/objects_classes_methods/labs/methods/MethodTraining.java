@@ -31,14 +31,14 @@ public class MethodTraining {
             System.out.println("Enter a number: "); // prompt user and assign input into array
             numbers[i] = scanner.nextInt();
         }
-        int max = ReturnLargest(numbers); // invoke method to return largest number
+        int max = returnLargest(numbers); // invoke method to return largest number
         System.out.println("\n" + "Max value = " + max);
 
         // Exercise 04 Count number of consonants
         Scanner consonants = new Scanner(System.in);
         out.println("\n" + "Enter a word to return the number of consonants in that word: ");
         String str = consonants.next();
-        int count = CountConsonants(str);
+        int count = countConsonants(str);
         System.out.println("Number of consonants in word entered = " + count);
 
         // Exercise 05 Determine if Prime number
@@ -54,7 +54,7 @@ public class MethodTraining {
         for (int i : arr) {
             System.out.print(i + " ");
         }
-        int[] returnArray = MinMaxArray(arr);
+        int[] returnArray = minMaxArray(arr);
         System.out.println("\n" + "Min & max numbers of entered array = ");
         for (int i : returnArray) {
             System.out.print(i + " ");
@@ -79,7 +79,7 @@ public class MethodTraining {
         out.println("\n" + "Enter divisor number 2: ");
         int divisor2 = div2.nextInt();
 
-        ArrayList<Integer> list = IntArrayList(maxNum, divisor1, divisor2);
+        ArrayList<Integer> list = intArrayList(maxNum, divisor1, divisor2);
         System.out.println("list of numbers between 0 & " +maxNum+ " = ");
         for (int k : list) {
             System.out.print(k + " ");
@@ -92,7 +92,7 @@ public class MethodTraining {
         for (int j : nums) {
             System.out.print(j + " ");
         }
-        ReverseArray(nums); //invoke method to Reverse Array and print result
+        reverseArray(nums); //invoke method to Reverse Array and print result
 
     } // Main method
 
@@ -123,7 +123,7 @@ public class MethodTraining {
 // Exercise 02 2) pass by reference - see separate file PassingObjects (public class)
 
 
-    private static int ReturnLargest(int[] numbers) {  // method for exercise 03 Return Largest number
+    private static int returnLargest(int[] numbers) {  // method for exercise 03 Return Largest number
         int max = numbers[0];
         for (int i = 0; i < 4; i++) {
             if (numbers[i] < max)
@@ -137,7 +137,7 @@ public class MethodTraining {
         return max;
     }
 
-    private static int CountConsonants(String str) { // method for exercise 04 count consonants
+    private static int countConsonants(String str) { // method for exercise 04 count consonants
         String conson = "bcdfghjklmnpqrstvwxyz";
 
         int count = 0;
@@ -161,13 +161,14 @@ public class MethodTraining {
         if (n % 2 == 0 || n % 3 == 0)
             return false;
 
-        for (int i = 5; i * i <= n; i = i + 6)
+        for (int i = 5; i * i <= n; i = i + 6) {
             if (n % i == 0 || n % (i + 2) == 0)
                 return false;
-        return true;
+        }
+            return true;
     }
 
-    private static int[] MinMaxArray(int[] arr) { // method for exercise 06 return array of min & max numbers
+    private static int[] minMaxArray(int[] arr) { // method for exercise 06 return array of min & max numbers
         int max = arr[0];
         int min = arr[0];
 
@@ -182,7 +183,7 @@ public class MethodTraining {
         return returnArray;
     }
 
-    private static ArrayList<Integer> IntArrayList(int maxNum, int divisor1, int divisor2) { //method for exercise 07
+    private static ArrayList<Integer> intArrayList(int maxNum, int divisor1, int divisor2) { //method for exercise 07
         ArrayList<Integer> list = new ArrayList();
 
         for(int index = 0; index < maxNum; index ++){
@@ -192,7 +193,7 @@ public class MethodTraining {
         return list;
     }
 
-    private static void ReverseArray(int[] nums) { //method for exercise 08 Reverse array
+    private static void reverseArray(int[] nums) { //method for exercise 08 Reverse array
         int temp; // temporary variable for storing number
 
         for (int i = 0; i < nums.length / 2; i++) { // nums.length/2 as each number is swapped with one other
