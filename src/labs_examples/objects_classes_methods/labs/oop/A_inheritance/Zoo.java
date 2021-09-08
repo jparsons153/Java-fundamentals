@@ -26,19 +26,64 @@ class Animals extends Zoo {
         this.teeth = teeth;
         this.nails = nails;
     }
-}
 
-class Mammals extends Animals {
-    public Mammals(int zone, boolean eaten, int numberOfLegs, boolean teeth, boolean nails) {
-        super(zone, eaten, numberOfLegs, teeth, nails);
+    public void getFood() {
+        System.out.println("Getting food for the Animals");
     }
 }
 
-class AnimalList {
+    class Mammals extends Animals {
+        public Mammals(int zone, boolean eaten, int numberOfLegs, boolean teeth, boolean nails) {
+            super(zone, eaten, numberOfLegs, teeth, nails);
+        }
+
+        @Override
+        public void getFood() {
+            System.out.println("Getting food for the Mammals");
+        }
+    }
+
+    class Carnivores extends Mammals {
+        private String favouriteMeat;
+
+        public Carnivores(int zone, boolean eaten, int numberOfLegs, boolean teeth, boolean nails, String favouriteMeat) {
+            super(zone, eaten, numberOfLegs, teeth, nails);
+            this.favouriteMeat = favouriteMeat;
+        }
+
+        @Override
+        public void getFood() {
+            System.out.println("Getting game meat for the Carnivores");
+        }
+    }
+
+    class Cheetah extends Carnivores {
+        private String name;
+        private String maleOrFemale;
+        private int age;
+
+        public Cheetah(int zone, boolean eaten, int numberOfLegs, boolean teeth, boolean nails, String favouriteMeat, String name, String maleOrFemale, int age) {
+            super(zone, eaten, numberOfLegs, teeth, nails, favouriteMeat);
+            this.name = name;
+            this.maleOrFemale = maleOrFemale;
+            this.age = age;
+        }
+
+        @Override
+        public void getFood() {
+            System.out.println("Getting rabbit meat for the Cheetah");
+        }
+    }
+
+
+/* class AnimalList {
     public static void main(String[] args) {
-        Mammals chettah = new Mammals(1,true,4,true,true);
+
+
     }
-}
+ }
+
+ */
 
 
 
