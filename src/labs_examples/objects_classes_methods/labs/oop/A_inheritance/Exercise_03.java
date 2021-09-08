@@ -3,7 +3,7 @@ package labs_examples.objects_classes_methods.labs.oop.A_inheritance;
 /**
  * Why does the output print in the order it does?
  *
- * You answer:
+ * You answer: Parent must always be defeined before the child. Code executes from top to bottom.
  *
  */
 
