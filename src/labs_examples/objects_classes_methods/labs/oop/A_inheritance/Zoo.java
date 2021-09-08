@@ -76,15 +76,12 @@ class Animals extends Zoo {
     }
 
 
-/* class AnimalList {
+class AnimalList {
     public static void main(String[] args) {
+    Mammals deer = new Mammals(2,true,4,true, true);
+    deer.getFood();
 
-
+    Carnivores lion = new Carnivores(8,true,4, true, true,"Steak");
+    lion.getFood();
     }
  }
-
- */
-
-
-
-
