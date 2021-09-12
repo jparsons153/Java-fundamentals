@@ -80,7 +80,7 @@ public class MethodTraining {
         int divisor2 = div2.nextInt();
 
         ArrayList<Integer> list = intArrayList(maxNum, divisor1, divisor2);
-        System.out.println("list of numbers between 0 & " +maxNum+ " = ");
+        System.out.println("list of numbers between 0 & " + maxNum + " = ");
         for (int k : list) {
             System.out.print(k + " ");
         }
@@ -126,8 +126,9 @@ public class MethodTraining {
     private static int returnLargest(int[] numbers) {  // method for exercise 03 Return Largest number
         int max = numbers[0];
         for (int i = 0; i < 4; i++) {
-            if (numbers[i] < max)
+            if (numbers[i] < max) {
                 continue;
+            }
             max = numbers[i];
         }
         System.out.println("Numbers entered = ");
@@ -143,8 +144,9 @@ public class MethodTraining {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
             for (int j = 0; j < conson.length(); j++) {
-                if (str.charAt(i) != conson.charAt(j))
+                if (str.charAt(i) != conson.charAt(j)) {
                     continue;
+                }
                 count++;
             }
         }
@@ -152,20 +154,24 @@ public class MethodTraining {
     }
 
     private static boolean isPrime(int n) { // method for exercise 05 check if Prime number
-        if (n <= 1)
+        if (n <= 1) {
             return false;
-        if (n <= 3)
+        }
+        if (n <= 3) {
             return true;
+        }
 
         // Check if can skip middle five numbers
-        if (n % 2 == 0 || n % 3 == 0)
+        if (n % 2 == 0 || n % 3 == 0) {
             return false;
+        }
 
         for (int i = 5; i * i <= n; i = i + 6) {
-            if (n % i == 0 || n % (i + 2) == 0)
+            if (n % i == 0 || n % (i + 2) == 0) {
                 return false;
+            }
         }
-            return true;
+        return true;
     }
 
     private static int[] minMaxArray(int[] arr) { // method for exercise 06 return array of min & max numbers
@@ -173,11 +179,11 @@ public class MethodTraining {
         int min = arr[0];
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > max)
+            if (arr[i] > max) {
                 max = arr[i];
-            else if (arr[i] < min)
+            } else if (arr[i] < min) {
                 min = arr[i];
-
+            }
         }
         int[] returnArray = {max, min};
         return returnArray;
@@ -186,9 +192,10 @@ public class MethodTraining {
     private static ArrayList<Integer> intArrayList(int maxNum, int divisor1, int divisor2) { //method for exercise 07
         ArrayList<Integer> list = new ArrayList();
 
-        for(int index = 0; index < maxNum; index ++){
-            if (index%divisor1 == 0 & index%divisor2 ==0){
-            list.add(index);}
+        for (int index = 0; index < maxNum; index++) {
+            if (index % divisor1 == 0 & index % divisor2 == 0) {
+                list.add(index);
+            }
         }
         return list;
     }
