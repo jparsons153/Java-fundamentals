@@ -2,7 +2,7 @@ package labs_examples.objects_classes_methods.labs.oop.B_polymorphism;
 
 // Exercise 01 part 01
 
-public class Motorcross_bike implements Motorcycle {
+public class Motorcross_bike implements Motorcycle { //implement Motorcycle Interface
     private int cc;
     private String make;
     private String model;
@@ -18,7 +18,7 @@ public class Motorcross_bike implements Motorcycle {
         this.model = model;
     }
 
-    @Override
+    @Override //Overriding methods
     public void putGearOn() { //overriding
         System.out.println("Putting on rigger boots");
     }
