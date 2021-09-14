@@ -40,6 +40,7 @@ int starRating;
         boolean breakfast = in.nextBoolean();
         if(breakfast=true){
             breakfastList.add(roomNumber);
+            System.out.println("Breakfast booking successful");
         }
     }
 
