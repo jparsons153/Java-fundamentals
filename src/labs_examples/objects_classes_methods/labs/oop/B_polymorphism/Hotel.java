@@ -23,7 +23,7 @@ int starRating;
 
     @Override
     public int reserveRoom() {
-        ArrayList<Integer> roomsOccupied = new ArrayList<>();
+
         Scanner room = new Scanner(System.in);
         out.println("Select room number: ");
         int roomNumber = room.nextInt();
