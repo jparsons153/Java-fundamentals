@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
+// Exercise 01 part 02
+
 public class Guesthouse implements Checkin {
     String guesthouseName;
     String location;
@@ -24,7 +26,17 @@ public class Guesthouse implements Checkin {
     }
 
     @Override
+    public String toString() {
+        return "Guesthouse{" +
+                "guesthouseName='" + guesthouseName + '\'' +
+                ", location='" + location + '\'' +
+                ", starRating=" + starRating +
+                '}';
+    }
+
+    @Override
     public int reserveRoom() {
+        System.out.println("\n" + toString());
         Scanner room = new Scanner(System.in);
         out.println("Select room number: ");
         int roomNumber = room.nextInt();

@@ -5,10 +5,15 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
+// Exercise 01 part 02
+
 public class Hotel implements Checkin {
 String location;
 int numberOfRooms;
 int starRating;
+
+    public ArrayList<Integer> roomsOccupied = new ArrayList<>(); // define arraylists
+    public ArrayList<Integer> breakfastList = new ArrayList<>();
 
     public Hotel(String location, int numberOfRooms, int starRating) {
         this.location = location;
@@ -22,18 +27,28 @@ int starRating;
     }
 
     @Override
-    public int reserveRoom() {
+    public String toString() {
+        return "Hotel{" +
+                "location='" + location + '\'' +
+                ", numberOfRooms=" + numberOfRooms +
+                ", starRating=" + starRating +
+                '}';
+    }
 
+    @Override
+    public int reserveRoom() {
+        System.out.println(toString());
         Scanner room = new Scanner(System.in);
         out.println("Select room number: ");
         int roomNumber = room.nextInt();
-        roomsOccupied.add(roomNumber);
+        if (roomNumber<numberOfRooms){
+            roomsOccupied.add(roomNumber);}
+        else System.out.println("Enter a room number less than " +numberOfRooms);
         return roomNumber;
     }
 
     @Override
     public void bookBreakfast(int roomNumber) {
-        ArrayList<Integer> breakfastList = new ArrayList<>();
         System.out.println("Request if guests would like breakfast");
         Scanner in = new Scanner(System.in);
         out.println("Breakfast required, enter True or False");
