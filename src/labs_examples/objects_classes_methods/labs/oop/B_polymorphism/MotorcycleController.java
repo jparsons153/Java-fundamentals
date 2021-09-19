@@ -10,5 +10,10 @@ public class MotorcycleController {
     Scrambler.checkTyrePressure();
     Scrambler.putOnHelmet();
 
+    Cruiser_bike Harley = new Cruiser_bike(2013, 165);
+    Harley.putGearOn();
+    Harley.checkTyrePressure();
+    Harley.putOnHelmet();
+
     }
 }
