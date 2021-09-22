@@ -8,17 +8,18 @@ public class Deck { //holds deck data
 
     public void populateDeck(){
         Card card[] = new Card[52];
-        for (int k=1; k <53; k++){
+        int cardNumber=0;
             for (int j =0; j<5; j++){ // suit char index
                 for (int i = 2; i < 11; i++) { // populate deck for cards 2-10 for ea suit
-                card[k] = new Card(suit[j],i); //how to loop thru char array??
+                card[cardNumber] = new Card(suit[j],i); //how to loop thru char array??
+                    cardNumber =+1;
             }
                 for (int l =0; l<5; l++) { // loop thru faceCard for each suit
-                // insert method
+                    card[cardNumber] = new Card(suit[j],faceCard[l]); //how to loop thru char array??
+                    cardNumber =+1;
                 }
         }
         }
-    }
 
     public Deck(Card[] cards, ArrayList<Integer> usedCards) {
         this.cards = cards;
