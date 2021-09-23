@@ -17,7 +17,7 @@ public class Deck { //holds deck data
                     cardNumber =+1;
             }
                 for (int l =0; l<5; l++) { // loop thru faceCard for each suit
-                    card[cardNumber] = new Card(suit[j],faceCard[l]); 
+                    card[cardNumber] = new Card(suit[j],faceCard[l]);
                     cardNumber =+1;
                 }
         }
