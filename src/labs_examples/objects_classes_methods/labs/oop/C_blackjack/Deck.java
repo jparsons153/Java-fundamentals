@@ -7,24 +7,40 @@ public class Deck { //holds deck data
     ArrayList<Integer> usedCards;
     char[] suit = {'♠', '♦', '♥', '♣'};
     char[] faceCard = {'J', 'K', 'Q', 'A'};
+    int cardIndex =0;
+    int cardNumber;
 
-    public void populateDeck(){
+    public static void populateDeck(char[] suit, char[] faceCard, int cardIndex){
         Card card[] = new Card[52];
-        int cardNumber=0;
-            for (int j =0; j<5; j++){ // suit char index
-                for (int i = 2; i < 11; i++) { // populate deck for cards 2-10 for ea suit
-                card[cardNumber] = new Card(suit[j],i);
-                    cardNumber =+1;
-            }
-                for (int l =0; l<5; l++) { // loop thru faceCard for each suit
-                    card[cardNumber] = new Card(suit[j],faceCard[l]);
-                    cardNumber =+1;
+            for (int j =0; j<5; j++) { // suit char index
+                for (int cardNumber = 2; cardNumber < 11; cardNumber++) { // populate deck for cards 2-10 for ea suit
+                    card[cardIndex] = new Card(suit[j], cardNumber);
+                    cardIndex = +1;
                 }
-        }
+                for (int l = 0; l < 5; l++) { // loop thru faceCard for each suit
+                    card[cardIndex] = new Card(suit[j], faceCard[l]);
+                    cardIndex = +1;
+                }
+            }
         }
 
-    public Deck(Card[] cards, ArrayList<Integer> usedCards) {
-        this.cards = cards;
-        this.usedCards = usedCards;
+    public char[] getSuit() {
+        return suit;
+    }
+
+    public char[] getFaceCard() {
+        return faceCard;
+    }
+
+    public int getCardIndex() {
+        return cardIndex;
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardIndex(int cardIndex) {
+        this.cardIndex = cardIndex;
     }
 }

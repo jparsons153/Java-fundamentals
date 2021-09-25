@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BlackjackController {
 
-    public static void deal(Player, ArrayList<Integer> usedCards) { //pass in Player object, change Player to player object?
+    public static void deal(Player player, ArrayList<Integer> usedCards,ArrayList<Card> cards){ //pass in Player object, change Player to player object?
         int min = 1;
         int max = 52;
 
@@ -13,20 +13,21 @@ public class BlackjackController {
             int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
             System.out.println(random_int);
 
-            if (usedCards.contains(random_int)) { //check if card has already been drawn
+            if (usedCards.contains(random_int)) { //check if card has already been drawn if so request another card
                 continue;
             }
-            cardNumber = random_int; // how to bring in cardNumber index from Deck class?
-            cards.add(card[cardNumber]); // add card to card Arraylist in Hand class
-            usedCards.add(cardNumber);   // add card number to usedcard arraylist
+
+            setcardIndex(random_int); // set cardIndex = random_int??
+            cards.add(card[cardIndex]); // add card object drawn to card Arraylist in Hand class
+            usedCards.add(cardIndex);   // add card number to usedcard arraylist
         }
     }
 
         public static void main (String[]args){
 
-            populateDeck();
+            //populateDeck();
 
-            deal();
+            //deal();
 
         }
     }
