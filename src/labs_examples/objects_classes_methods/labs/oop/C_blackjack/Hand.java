@@ -14,12 +14,12 @@ public class Hand {
     public static int handScore(ArrayList<Card> cards, int handValue){
         for(Card n : cards){ //for each card do the following
                              // check if cardNumber or faceCard
-            if(cards.getfaceCard = 'A'){ // if faceCard = A add 1 to handValue
+            if(cards[n].getfaceCard = 'A'){ // if faceCard = A add 1 to handValue
                 handValue=+1;
             }
 
-            else if(cards.getcardNumber < 11){ // if cardNumber add int to handValue
-                handValue=+ getcardNumber;
+            else if(cards[n].getcardNumber < 11){ // if cardNumber add int to handValue
+                handValue=+ cards[n].getcardNumber;
             }
 
             else { // else faceCard is K, Q or J add 10 to handValue

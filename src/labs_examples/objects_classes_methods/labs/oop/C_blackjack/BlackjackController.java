@@ -17,9 +17,8 @@ public class BlackjackController {
                 continue;
             }
 
-            setcardIndex(random_int); // set cardIndex = random_int??
-            cards.add(card[cardIndex]); // add card object drawn to card Arraylist in Hand class
-            usedCards.add(cardIndex);   // add card number to usedcard arraylist
+            cards.add(cards[random_int]); // add card object drawn to card Arraylist in Hand class
+            usedCards.add(random_int);   // add card number to usedcard arraylist
         }
     }
 
