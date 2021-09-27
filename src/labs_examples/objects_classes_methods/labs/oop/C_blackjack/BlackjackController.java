@@ -1,6 +1,7 @@
 package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BlackjackController {
 
@@ -22,13 +23,20 @@ public class BlackjackController {
         }
     }
 
-        public static void main (String[]args){
+    public static void playBlackJack(){
+        Player computer = new Player(); // create players
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter player username: ");
+        String player = scanner.next();
+        Player player = new Player(); // New Player needs to be a new string, how to set equal to scanner input?
+    }
 
+    public static void main (String[]args){
 
-            //populateDeck();
+        Deck.populateDeck(); // populate deck of cards in Deck class
 
-            //deal();
+        //deal();
 
         }
     }

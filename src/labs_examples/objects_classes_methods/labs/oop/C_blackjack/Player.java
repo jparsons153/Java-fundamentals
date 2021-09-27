@@ -11,6 +11,9 @@ public class Player { // player info
         this.potValue = potValue;
     }
 
+    public Player() {
+    }
+
     //int handValue = getHandValue();
 
     public static boolean computerAI(int handValue){ // return true or false if computer wants another card
