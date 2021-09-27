@@ -11,6 +11,10 @@ public class Hand {
         this.handValue = handValue;
     }
 
+    public int getHandValue() {
+        return handValue;
+    }
+
     public static int handScore(ArrayList<Card> cards, int handValue) {
         for (Card n : cards) { //for each card do the following
 
@@ -26,7 +30,7 @@ public class Hand {
     }
 
     public static boolean greaterthan21(int handValue) {
-        if (handValue ==21) {
+        if (handValue >=21) {
             return true;
         }
         else return false;
