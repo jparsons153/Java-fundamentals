@@ -4,16 +4,20 @@ import java.util.ArrayList;
 
 public class Hand {
     ArrayList<Card> cards;
-    int handValue;
+    int handValue = 0;
 
     public Hand(ArrayList<Card> cards, int handValue) {
         this.cards = cards;
         this.handValue = handValue;
     }
 
-    public int getHandValue() {
-        return handValue;
+    public ArrayList<Card> getCards() {
+        return cards;
     }
+
+   // public int getHandValue() {
+        //return handValue;
+   // }
 
     public static int handScore(ArrayList<Card> cards, int handValue) {
         for (Card n : cards) { //for each card do the following

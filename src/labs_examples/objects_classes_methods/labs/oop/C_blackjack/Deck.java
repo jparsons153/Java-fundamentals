@@ -3,13 +3,19 @@ package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 import java.util.ArrayList;
 
 public class Deck { //holds deck data
-    Card[] cards;
-    ArrayList<Integer> usedCards;
-    char[] suit = {'♠', '♦', '♥', '♣'};
-    char[] faceCard = {'J', 'K', 'Q', 'A'};
-    int cardIndex =0;
+    public Card[] cards;
+    public ArrayList<Integer> usedCards;
 
-    public static void populateDeck(char[] suit, char[] faceCard, int cardIndex){
+
+    public ArrayList<Integer> getUsedCards() {
+        return usedCards;
+    }
+
+    public static void populateDeck(){
+        char[] suit = {'♠', '♦', '♥', '♣'};
+        char[] faceCard = {'J', 'K', 'Q', 'A'};
+        int cardIndex =0;
+
         Card card[] = new Card[52];
             for (int j =0; j<5; j++) { // suit char index
                 for (int i = 2; i < 11; i++) { // populate deck for cards 2-10 for ea suit
@@ -22,21 +28,4 @@ public class Deck { //holds deck data
                 }
             }
         }
-
-    public char[] getSuit() {
-        return suit;
-    }
-
-    public char[] getFaceCard() {
-        return faceCard;
-    }
-
-    public int getCardIndex() {
-        return cardIndex;
-    }
-
-
-    public void setCardIndex(int cardIndex) {
-        this.cardIndex = cardIndex;
-    }
 }

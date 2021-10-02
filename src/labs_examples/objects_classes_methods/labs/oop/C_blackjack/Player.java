@@ -11,10 +11,17 @@ public class Player { // player info
         this.potValue = potValue;
     }
 
-    public Player() {
+    public String getName() {
+        return name;
     }
 
-    //int handValue = getHandValue();
+    public Hand getHand() {
+        return hand;
+    }
+
+    public int getPotValue() {
+        return potValue;
+    }
 
     public static boolean computerAI(int handValue){ // return true or false if computer wants another card
       if(handValue<=16){ // if < 16 computer wants another card, else return false
