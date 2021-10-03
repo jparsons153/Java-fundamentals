@@ -15,4 +15,12 @@ public class Card { // holds card data
         this.suit = suit;
         this.faceCard = faceCard;
     }
+
+    public int getCardValue() {
+        return cardValue;
+    }
+
+    public char getFaceCard() {
+        return faceCard;
+    }
 }
