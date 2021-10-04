@@ -6,6 +6,17 @@ public class Deck { //holds deck data
     public Card[] cards;
     public ArrayList<Integer> usedCards;
 
+    public Deck(Card[] cards, ArrayList<Integer> usedCards) {
+        this.cards = cards;
+        this.usedCards = usedCards;
+    }
+
+    public Deck() {
+    }
+
+    public Card[] getCards() {
+        return cards;
+    }
 
     public ArrayList<Integer> getUsedCards() {
         return usedCards;

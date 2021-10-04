@@ -5,15 +5,9 @@ import java.util.Scanner;
 
 public class BlackjackController {
 
-        public static void playBlackJack(Card[] cards, ArrayList<Integer> usedCards){
-        //ArrayList<Card> compCards; // create new arraylist for comp & player cards
-        //ArrayList<Card> playerCards;
+        public static void playBlackJack(){
 
-        //Hand compHand = new Hand(getCards,0); // create player & comp Hand objects
-        //Hand playerHand = new Hand(playerCards, 0);
-
-            // create deck object
-            // used to call .usedCards & .cards in deck class
+        Deck fullDeck = new Deck(); // call populateDeck method for new object??
 
         Player computer = new Player("computer",0); // create computer player
         Scanner scanner = new Scanner(System.in);
@@ -21,18 +15,18 @@ public class BlackjackController {
         String input = scanner.nextLine();
         Player player = new Player(input,0); // create player object with name input from console
 
-        deal(player,usedCards, cards);
+        deal(player,fullDeck);
             for(Card n : player.hand.getCards()){System.out.println(n);} // print each Card object in playerCards
             Hand.handScore(player.hand.getCards(),0); // call handScore method to calculate value of hand
             System.out.println("Players hand value = " +player.hand.handValue); // print handValue & if >21
             Boolean bool = Hand.greaterthan21(player.hand.handValue);
             System.out.println("Is players hand greater than 21 " +bool);
 
-        deal(computer,usedCards,compCards, cards);
-            Hand.handScore(compCards,0);
+        deal(computer,fullDeck);
+            Hand.handScore(computer.hand.getCards(),0);
     }
 
-    public static void deal(Player player, ArrayList<Integer> usedCards,ArrayList<Card> playerCards, Card[] cards){ //remove reduntant inputs
+    public static void deal(Player player, Deck fullDeck){
         int min = 1;
         int max = 52;
 
@@ -40,15 +34,15 @@ public class BlackjackController {
             System.out.println("Random value in int from " + min + "to" + max + ":"); //generate random card number
             int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
             System.out.println("Card number " +random_int+ " drawn");
-            System.out.println("which is " + cards[random_int]); // find card from Card array in deck class
+            System.out.println("which is " + fullDeck.getCards()[random_int]); // find card from Card array in deck class
 
-            if (usedCards.contains(random_int)) { //check if card has already been drawn if so request another card
+            if (fullDeck.getUsedCards().contains(random_int)) { //check if card has already been drawn if so request another card
                 continue;
             }
 
-            playerCards.add(cards[random_int]); // add card object from array at random number to playerCards Arraylist
+            player.hand.getCards().add(fullDeck.getCards()[random_int]); // add card object from array at random number to playerCards Arraylist
 
-            usedCards.add(random_int);   // add card number to usedcard arraylist
+            fullDeck.getUsedCards().add(random_int);   // add card number to usedcard arraylist
         }
     }
 
@@ -56,8 +50,9 @@ public class BlackjackController {
     public static void main (String[]args){
 
         Deck.populateDeck(); // populate deck of cards in Deck class
+                            // call method for new Deck object??
 
-        playBlackJack(Card[] cards, ArrayList<Integer> usedCards);
+        playBlackJack();
 
         }
     }
