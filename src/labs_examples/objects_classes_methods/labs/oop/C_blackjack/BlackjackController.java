@@ -7,7 +7,11 @@ public class BlackjackController {
 
         public static void playBlackJack(){
 
-        Deck fullDeck = new Deck(); // call populateDeck method for new object??
+        char requestCard;
+        Boolean AIbool;
+
+        Deck fullDeck = new Deck();
+            fullDeck.populateDeck();
 
         Player computer = new Player("computer",0); // create computer player
         Scanner scanner = new Scanner(System.in);
@@ -15,15 +19,29 @@ public class BlackjackController {
         String input = scanner.nextLine();
         Player player = new Player(input,0); // create player object with name input from console
 
-        deal(player,fullDeck);
-            for(Card n : player.hand.getCards()){System.out.println(n);} // print each Card object in playerCards
-            Hand.handScore(player.hand.getCards(),0); // call handScore method to calculate value of hand
-            System.out.println("Players hand value = " +player.hand.handValue); // print handValue & if >21
-            Boolean bool = Hand.greaterthan21(player.hand.handValue);
-            System.out.println("Is players hand greater than 21 " +bool);
+            do {
+                deal(player, fullDeck);
+                for (Card n : player.hand.getCards()) { // print each Card object in playerCards
+                    System.out.println(n);
+                }
+                Hand.handScore(player.hand.getCards(), 0); // call handScore method to calculate value of hand
+                System.out.println("Players hand value = " + player.hand.handValue); // print handValue & if >21
+                Boolean bool = Hand.greaterthan21(player.hand.handValue);
+                System.out.println("Is players hand greater than 21 " + bool);
 
-        deal(computer,fullDeck);
-            Hand.handScore(computer.hand.getCards(),0);
+                Scanner newCard = new Scanner(System.in);
+                System.out.print("Request another card Y/N: ");
+                requestCard = scanner.next().charAt(0);
+
+                deal(computer, fullDeck);
+                Hand.handScore(computer.hand.getCards(), 0);
+
+                AIbool = computer.computerAI(computer.hand.handValue);
+                if(AIbool) {
+                    System.out.println("Computer has taken another card");
+                }
+
+            } while((requestCard == 'Y' & AIbool) | (player.hand.handValue < 21 | computer.hand.handValue < 21)); //continue play if requested another card & handvalue < 21
     }
 
     public static void deal(Player player, Deck fullDeck){
@@ -42,17 +60,14 @@ public class BlackjackController {
 
             player.hand.getCards().add(fullDeck.getCards()[random_int]); // add card object from array at random number to playerCards Arraylist
 
-            fullDeck.getUsedCards().add(random_int);   // add card number to usedcard arraylist
+            fullDeck.getUsedCards().add(random_int);   // add card number to usedCard arraylist
         }
     }
 
 
     public static void main (String[]args){
 
-        Deck.populateDeck(); // populate deck of cards in Deck class
-                            // call method for new Deck object??
-
-        playBlackJack();
+    playBlackJack();
 
         }
     }
