@@ -1,9 +1,14 @@
 package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BlackjackController {
+
+    public static void main (String[]args){
+
+        playBlackJack();
+
+    }
 
         public static void playBlackJack(){
 
@@ -49,10 +54,11 @@ public class BlackjackController {
         int max = 52;
 
         for (int i = 1; i < 3; i++) { // deal player two cards
-            System.out.println("Random value in int from " + min + "to" + max + ":"); //generate random card number
+            System.out.println("Random value in int from " + min + " to " + max + ":"); //generate random card number
             int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
             System.out.println("Card number " +random_int+ " drawn");
-            System.out.println("which is " + fullDeck.getCards()[random_int]); // find card from Card array in deck class
+            //System.out.println("which is " + fullDeck.getCards()[random_int]); // find card from Card array in deck class
+            System.out.println("which is " + fullDeck.cards[random_int]);
 
             if (fullDeck.getUsedCards().contains(random_int)) { //check if card has already been drawn if so request another card
                 continue;
@@ -63,12 +69,5 @@ public class BlackjackController {
             fullDeck.getUsedCards().add(random_int);   // add card number to usedCard arraylist
         }
     }
-
-
-    public static void main (String[]args){
-
-    playBlackJack();
-
-        }
     }
 

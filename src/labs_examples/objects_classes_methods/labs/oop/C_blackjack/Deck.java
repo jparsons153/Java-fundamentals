@@ -27,14 +27,14 @@ public class Deck { //holds deck data
         char[] faceCard = {'J', 'K', 'Q', 'A'};
         int cardIndex =0;
 
-        Card card[] = new Card[52];
-            for (int j =0; j<5; j++) { // suit char index
+        Card cards[] = new Card[52];
+            for (int j =0; j<4; j++) { // suit char index
                 for (int i = 2; i < 11; i++) { // populate deck for cards 2-10 for ea suit
-                    card[cardIndex] = new Card(suit[j], i);
+                    cards[cardIndex] = new Card(suit[j], i);
                     cardIndex = +1;
                 }
-                for (int l = 0; l < 5; l++) { // loop thru faceCard for each suit
-                    card[cardIndex] = new Card(suit[j], faceCard[l]);
+                for (int l = 0; l < 4; l++) { // loop thru faceCard for each suit
+                    cards[cardIndex] = new Card(suit[j], faceCard[l]);
                     cardIndex = +1;
                 }
             }
