@@ -26,10 +26,10 @@ public class BlackjackController {
 
             do {
                 deal(player, fullDeck);
-                for (Card n : player.hand.getCards()) { // print each Card object in playerCards
-                    System.out.println(n);
-                }
-                Hand.handScore(player.hand.getCards(), 0); // call handScore method to calculate value of hand
+                    for (Card n : player.hand.get_Cards()) { // print each Card object in playerCards
+                        System.out.println(n);
+                    }
+                Hand.handScore(player.hand.get_Cards(), 0); // call handScore method to calculate value of hand
                 System.out.println("Players hand value = " + player.hand.handValue); // print handValue & if >21
                 Boolean bool = Hand.greaterthan21(player.hand.handValue);
                 System.out.println("Is players hand greater than 21 " + bool);
@@ -39,14 +39,28 @@ public class BlackjackController {
                 requestCard = scanner.next().charAt(0);
 
                 deal(computer, fullDeck);
-                Hand.handScore(computer.hand.getCards(), 0);
+                Hand.handScore(computer.hand.get_Cards(), 0);
 
                 AIbool = computer.computerAI(computer.hand.handValue);
-                if(AIbool) {
-                    System.out.println("Computer has taken another card");
-                }
+                    if(AIbool) {
+                        System.out.println("Computer has taken another card");
+                    }
 
             } while((requestCard == 'Y' & AIbool) | (player.hand.handValue < 21 | computer.hand.handValue < 21)); //continue play if requested another card & handvalue < 21
+
+            // create method for printing hand + handValue??
+
+            System.out.println("User " +player.getName()+ "has a hand of: " );
+                for (Card n : player.hand.get_Cards()) { // print each Card object in playerCards
+                    System.out.println(n);
+                }
+            System.out.println("with a hand score of " +player.hand.handValue);
+
+            System.out.println("Computer " +computer.getName()+ "has a hand of: " );
+            for (Card n : computer.hand.get_Cards()) { // print each Card object in playerCards
+                System.out.println(n);
+            }
+            System.out.println("with a hand score of " +computer.hand.handValue);
     }
 
     public static void deal(Player player, Deck fullDeck){
@@ -57,14 +71,15 @@ public class BlackjackController {
             System.out.println("Random value in int from " + min + " to " + max + ":"); //generate random card number
             int random_int = (int) Math.floor(Math.random() * (max - min + 1) + min);
             System.out.println("Card number " +random_int+ " drawn");
-            //System.out.println("which is " + fullDeck.getCards()[random_int]); // find card from Card array in deck class
-            System.out.println("which is " + fullDeck.cards[random_int]);
+            System.out.println("which is " + fullDeck.getCards()[random_int]); // find card from Card array in deck class
+                                                                                // use toString method
 
-            if (fullDeck.getUsedCards().contains(random_int)) { //check if card has already been drawn if so request another card
-                continue;
-            }
+                if (fullDeck.getUsedCards().contains(random_int)) { //check if card has already been drawn if so request another card
+                    continue;
+                }
 
-            player.hand.getCards().add(fullDeck.getCards()[random_int]); // add card object from array at random number to playerCards Arraylist
+            player.hand.cards.add(fullDeck.getCards()[random_int]); // add card object from array at random number to playerCards Arraylist
+                                                                    // NullPointerException??
 
             fullDeck.getUsedCards().add(random_int);   // add card number to usedCard arraylist
         }

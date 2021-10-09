@@ -3,7 +3,7 @@ package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 import java.util.ArrayList;
 
 public class Hand {
-    private ArrayList<Card> cards;
+    ArrayList<Card> cards; // access modifier? private / protected or public?
     int handValue = 0;
 
     public Hand(ArrayList<Card> cards, int handValue) {
@@ -14,7 +14,7 @@ public class Hand {
     public Hand() {
     }
 
-    public ArrayList<Card> getCards() {
+    public ArrayList<Card> get_Cards() {
         return cards;
     }
 

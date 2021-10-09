@@ -23,4 +23,13 @@ public class Card { // holds card data
     public char getFaceCard() {
         return faceCard;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "suit=" + suit +
+                ", cardValue=" + cardValue +
+                ", faceCard=" + faceCard +
+                '}';
+    }
 }
