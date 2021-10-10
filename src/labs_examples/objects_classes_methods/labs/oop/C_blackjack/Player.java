@@ -3,11 +3,13 @@ package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 public class Player { // player info
     String name;
     Hand hand = new Hand();
-    int potValue; //(the amount of money they have)
+    double potValue; //(the amount of money they have)
+    int bet;
 
-    public Player(String name, int potValue) {
+    public Player(String name, int potValue, int bet) {
         this.name = name;
         this.potValue = potValue;
+        this.bet = bet;
     }
 
     public String getName() {
@@ -18,8 +20,16 @@ public class Player { // player info
         return hand;
     }
 
-    public int getPotValue() {
+    public double getPotValue() {
         return potValue;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
     }
 
     public static boolean computerAI(int handValue){ // return true or false if computer wants another card
