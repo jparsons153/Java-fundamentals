@@ -10,7 +10,7 @@ public class BlackjackController {
     }
 
     // potential extra features (excerise_04);
-    // - Ace can be one (1) or eleven (11)
+    // - Ace can be one (1) or eleven (11) done
     // - call "blackjack" when dealt Ace + 10-value cards on the first two cards
     // - blackjack pays 3 to 2, $3 for very $2
     // - Hit vs stand
@@ -53,7 +53,7 @@ public class BlackjackController {
             Scanner newCard = new Scanner(System.in);
             System.out.print("Request another card Y/N: ");
             requestCard = scanner.next().charAt(0);
-            if (requestCard == 'Y') { // if request another card, deal one more
+            if (requestCard == 'Y' | requestCard == 'y') { // if request another card, deal one more
                 deal(player, fullDeck);
             }
             else {
@@ -74,7 +74,9 @@ public class BlackjackController {
         //} while (player.getBet() < player.potValue);
 
         handScore(player); //calculate handScore, print hand and print if > 21
+        handCards(player);
         handScore(computer);
+        handCards(computer);
 
         if (player.hand.handValue > computer.hand.handValue && player.hand.handValue < 21) {
             player.potValue = 2 * player.getBet();
@@ -96,7 +98,7 @@ public class BlackjackController {
         }
         else {
             player.potValue = 0;
-            System.out.println("\n" +"Try again"+ "\n");
+            System.out.println("\n" +"Game over Try again"+ "\n");
         }
     }
 
