@@ -71,7 +71,6 @@ public class BlackjackController {
             }
 
         } while ((player.hand.handValue < 22 | computer.hand.handValue < 22)); //continue play if requested another card & handvalue < 21
-        //} while (player.getBet() < player.potValue);
 
         handScore(player); //calculate handScore, print hand and print if > 21
         handCards(player);
@@ -100,11 +99,14 @@ public class BlackjackController {
             player.potValue = 0;
             System.out.println("\n" +"Game over Try again"+ "\n");
         }
+
+        //} while (player.getBet() < player.potValue);
+
     }
 
     public static void deal(Player player, Deck fullDeck) {
-        int min = 1;
-        int max = 52;
+        int min = 0;
+        int max = 51;
         int random_int;
 
         do {
@@ -125,6 +127,7 @@ public class BlackjackController {
     }
 
     public static int handScore(Player player) {
+        player.hand.handValue=0;
 
         for (Card card : player.hand.cards) { //for each card do the following
 
