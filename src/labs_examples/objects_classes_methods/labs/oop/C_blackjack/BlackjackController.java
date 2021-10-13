@@ -9,9 +9,9 @@ public class BlackjackController {
         playBlackJack();
     }
 
-    // potential extra features (excerise_04);
-    // - Ace can be one (1) or eleven (11) done
-    // - call "blackjack" when dealt Ace + 10-value cards on the first two cards
+    // potential extra features added (excerise_04);
+    // - Ace can be one (1) or eleven (11) - DONE
+    // - call "blackjack" when dealt Ace + 10-value cards on the first two cards - DONE
     // - blackjack pays 3 to 2, $3 for very $2
     // - Hit vs stand
 
@@ -34,7 +34,7 @@ public class BlackjackController {
         Scanner takeBet = new Scanner(System.in);
         System.out.print("Enter bet $"); // take a bet from the player
         player.setBet(takeBet.nextInt());
-        System.out.println("\n");
+        System.out.print("\n");
 
         for (int i = 1; i < 3; i++) { // deal player & computer two cards each
             deal(player, fullDeck);
@@ -47,7 +47,14 @@ public class BlackjackController {
             Boolean bool = greaterthan21(player.hand);
             System.out.println("Is players hand greater than or equal to 21 " + bool);
             if (bool) {
-                break;
+                if (player.hand.handValue == 21) { //can only get Blackjack when dealt first two cards
+                    player.potValue = 2.5 * player.getBet();
+                    System.out.println("\n" + "Player has hit BlackJack, congratulations!!");
+                    System.out.println("Your potValue = $" + player.getPotValue());
+                    return;
+                } else {
+                    break;
+                }
             }
 
             Scanner newCard = new Scanner(System.in);
@@ -82,11 +89,7 @@ public class BlackjackController {
             System.out.println("\n" +"Player has won!!");
             System.out.println("Your potValue = $" + player.getPotValue());
         }
-        else if (player.hand.handValue == 21) {
-            player.potValue = 2.5 * player.getBet();
-            System.out.println("\n" +"Player has hit BlackJack, congratulations!!");
-            System.out.println("Your potValue = $" + player.getPotValue());
-        }
+
         else if (computer.hand.handValue > player.hand.handValue && computer.hand.handValue <= 21) {
             player.potValue = 0;
             System.out.println("\n" +"Computer has won, try again!!" +"\n");
