@@ -19,6 +19,9 @@ public class Hand {
         return cards;
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
 }
 
 

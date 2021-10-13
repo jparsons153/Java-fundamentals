@@ -9,11 +9,10 @@ public class BlackjackController {
         playBlackJack();
     }
 
-    // potential extra features added (excerise_04);
+    // extra features added (excerise_04);
     // - Ace can be one (1) or eleven (11) - DONE
     // - call "blackjack" when dealt Ace + 10-value cards on the first two cards - DONE
-    // - blackjack pays 3 to 2, $3 for very $2
-    // - Hit vs stand
+
 
     public static void playBlackJack() {
 
@@ -36,8 +35,11 @@ public class BlackjackController {
         player.setBet(takeBet.nextInt());
         System.out.print("\n");
 
-        for (int i = 1; i < 3; i++) { // deal player & computer two cards each
-            deal(player, fullDeck);
+        dealTesting(player, fullDeck); // assign player 2 cards for TESTING
+
+        for (int i = 1; i < 3; i++) // deal player & computer two cards each
+        {
+           // deal(player, fullDeck);
             deal(computer, fullDeck);
         }
 
@@ -62,8 +64,7 @@ public class BlackjackController {
             requestCard = scanner.next().charAt(0);
             if (requestCard == 'Y' | requestCard == 'y') { // if request another card, deal one more
                 deal(player, fullDeck);
-            }
-            else {
+            } else {
                 break;
             }
 
@@ -86,28 +87,37 @@ public class BlackjackController {
 
         if (player.hand.handValue > computer.hand.handValue && player.hand.handValue < 21) {
             player.potValue = 2 * player.getBet();
-            System.out.println("\n" +"Player has won!!");
+            System.out.println("\n" + "Player has won!!");
             System.out.println("Your potValue = $" + player.getPotValue());
-        }
-
-        else if (computer.hand.handValue > player.hand.handValue && computer.hand.handValue <= 21) {
+        } else if (computer.hand.handValue > player.hand.handValue && computer.hand.handValue <= 21) {
             player.potValue = 0;
-            System.out.println("\n" +"Computer has won, try again!!" +"\n");
-        }
-        else if ((player.hand.handValue == computer.hand.handValue && player.hand.handValue < 21)) {
+            System.out.println("\n" + "Computer has won, try again!!" + "\n");
+        } else if ((player.hand.handValue == computer.hand.handValue && player.hand.handValue < 21)) {
             player.potValue = player.getBet();
-            System.out.println("\n" +"Draw"+ "\n");
-        }
-        else {
+            System.out.println("\n" + "Draw" + "\n");
+        } else {
             player.potValue = 0;
-            System.out.println("\n" +"Game over Try again"+ "\n");
+            System.out.println("\n" + "Game over Try again" + "\n");
         }
 
         //} while (player.getBet() < player.potValue);
 
     }
 
+    public static void dealTesting(Player player, Deck fulldeck) {
+        Card[] cards = fulldeck.getCards();
+        Card myAce = cards[51];
+        Card myJack = cards[48];
+
+        Hand myhand = player.hand;
+        ArrayList<Card> myCards = myhand.cards;
+
+        myCards.add(myAce); // add card object from array to playerCards Arraylist
+        myCards.add(myJack); // add card object from array to playerCards Arraylist
+    }
+
     public static void deal(Player player, Deck fullDeck) {
+
         int min = 0;
         int max = 51;
         int random_int;
@@ -129,52 +139,51 @@ public class BlackjackController {
         } while (!fullDeck.getUsedCards().contains(random_int));
     }
 
-    public static int handScore(Player player) {
-        player.hand.handValue=0;
+        public static int handScore (Player player){
+            player.hand.handValue = 0;
 
-        for (Card card : player.hand.cards) { //for each card do the following
+            for (Card card : player.hand.cards) { //for each card do the following
 
-            if (card.getCardValue() > 1 && card.getCardValue() < 11) { // if cardNumber add int to handValue
-                player.hand.handValue += card.getCardValue();
-            } else if (card.getFaceCard() == 'A') { // if faceCard = A add 1 to handValue
-                player.hand.handValue += 1;
-            } else { // else faceCard is K, Q or J add 10 to handValue
+                if (card.getCardValue() > 1 && card.getCardValue() < 11) { // if cardNumber add int to handValue
+                    player.hand.handValue += card.getCardValue();
+                } else if (card.getFaceCard() == 'A') { // if faceCard = A add 1 to handValue
+                    player.hand.handValue += 1;
+                } else { // else faceCard is K, Q or J add 10 to handValue
+                    player.hand.handValue += 10;
+                }
+            }
+            valueOfAce(player); //Ace is worth score of 11 if drawn with another faceCard
+
+            return player.hand.handValue;
+        }
+
+        public static int valueOfAce (Player player){
+            boolean Ace = false;
+            boolean faceCard = false;
+
+            for (Card card : player.hand.cards) { //for each card do the following
+
+                if (card.getFaceCard() == 'A') {
+                    Ace = true;
+                } else if (card.getFaceCard() == 'K' | card.getFaceCard() == 'Q' | card.getFaceCard() == 'J') {
+                    faceCard = true;
+                }
+            }
+            if (Ace && faceCard) {
                 player.hand.handValue += 10;
             }
+            return player.hand.handValue;
         }
-        valueOfAce(player);
 
-        return player.hand.handValue;
-    }
-
-    public static int valueOfAce(Player player) {
-        boolean Ace = false;
-        boolean faceCard = false;
-
-        for (Card card : player.hand.cards) { //for each card do the following
-
-            if (card.getFaceCard() == 'A') {
-                Ace = true;
+        public static void handCards (Player player){
+            System.out.println("\n" + player.getName() + " has a hand of ");
+            for (Card n : player.hand.get_Cards()) { // print each Card object in playerCards
+                System.out.println(n);
             }
-            else if (card.getFaceCard() == 'K' | card.getFaceCard() == 'Q' | card.getFaceCard() == 'J') {
-                faceCard = true;
-            }
+            System.out.println("\n" + player.getName() + " hand value = " + player.hand.handValue); // print handValue & if >21
         }
-        if (Ace && faceCard) {
-            player.hand.handValue += 10;
-        }
-        return player.hand.handValue;
-    }
 
-    public static void handCards(Player player){
-        System.out.println("\n" +player.getName()+ " has a hand of ");
-        for (Card n : player.hand.get_Cards()) { // print each Card object in playerCards
-            System.out.println(n);
+        public static boolean greaterthan21 (Hand hand){
+            return hand.handValue >= 21; // return true if >=21 otherwise return false
         }
-        System.out.println("\n" + player.getName() +" hand value = " + player.hand.handValue); // print handValue & if >21
     }
-
-    public static boolean greaterthan21(Hand hand) {
-        return hand.handValue >= 21; // return true if >=21 otherwise return false
-    }
-}
