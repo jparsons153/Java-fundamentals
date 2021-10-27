@@ -36,25 +36,26 @@ public class BlackjackController {
 
             Scanner takeBet = new Scanner(System.in);
             System.out.print("Enter bet $"); // take a bet from the player
-            player.setBet(takeBet.nextInt());
+            player.setBet(takeBet.nextDouble());
             System.out.print("\n");
+
 
             if(player.getBet() > player.potValue){
                 System.out.println("Enter a bet < pot value");
                 continue;
             }
 
-            dealTesting(player, fullDeck); // assign player 2 cards for TESTING
+           // dealTesting(player, fullDeck); // assign player 2 cards for TESTING
 
             for (int i = 1; i < 3; i++) // deal player & computer two cards each
             {
-                // deal(player, fullDeck);
+                deal(player, fullDeck);
                 deal(computer, fullDeck);
             }
 
             do {
                 handScore(player); //calculate handScore
-                //handCards(player); //print hand and print if > 21
+                handCards(player); //print hand and print if > 21
                 Boolean bool = greaterthan21(player.hand);
                 System.out.println("Is " +player.getName() + " hand greater than or equal to 21 " + bool);
                 if (bool) {
@@ -88,12 +89,12 @@ public class BlackjackController {
             handCards(computer);
 
             if (player.hand.handValue > computer.hand.handValue && player.hand.handValue < 21) {
-                player.potValue = 2 * player.getBet();
+                player.potValue = 2 * player.getBet() + player.potValue;
                 System.out.println("\n" + player.getName() +" has won!!");
                 System.out.println("Your potValue = $" + player.getPotValue());
             }
             else if (player.hand.handValue == 21) {
-                player.potValue = 2.5 * player.getBet();
+                player.potValue = 2.5 * player.getBet() + player.potValue;
                 System.out.println("\n" + player.getName() + " has hit BlackJack, congratulations!!");
                 System.out.println("Your potValue = $" + player.getPotValue());
             }

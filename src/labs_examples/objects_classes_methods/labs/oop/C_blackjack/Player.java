@@ -4,7 +4,7 @@ public class Player { // player info
     String name;
     Hand hand = new Hand();
     double potValue; //(the amount of money they have)
-    int bet;
+    double bet;
 
     public Player(String name, int potValue, int bet) {
         this.name = name;
@@ -24,11 +24,11 @@ public class Player { // player info
         return potValue;
     }
 
-    public int getBet() {
+    public double getBet() {
         return bet;
     }
 
-    public void setBet(int bet) {
+    public void setBet(double bet) {
         this.bet = bet;
     }
 
