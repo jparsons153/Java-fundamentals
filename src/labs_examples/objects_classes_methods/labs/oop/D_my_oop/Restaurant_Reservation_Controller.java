@@ -1,7 +1,5 @@
 package labs_examples.objects_classes_methods.labs.oop.D_my_oop;
 
-import labs_examples.objects_classes_methods.labs.oop.C_blackjack.Player;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,8 +25,8 @@ public class Restaurant_Reservation_Controller implements Reservations {
         System.out.println("Enter booking name :");
         String booking_name = scan.next();
 
-        for (twoSeaterTable i : available_2_seats) {
-            if(booking_name == twoSeaterTable.getBookingName){
+        for (TwoSeaterTable i : available_2_seats) {
+            if(booking_name == i.getBookingName()){
                 System.out.println("Booking confirmed");
             }
         }
@@ -40,8 +38,8 @@ public class Restaurant_Reservation_Controller implements Reservations {
         // populate 2nd array of available table objects
         // for each ask table in array, have you this time available?
 
-        ArrayList<twoSeaterTable> booked_2_seats;
-        ArrayList<fourSeaterTable> booked_4_seats;
+        ArrayList<TwoSeaterTable> booked_2_seats;
+        ArrayList<FourSeaterTable> booked_4_seats;
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter number of people for table reservation: ");
@@ -50,7 +48,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
         // for table of 2;
         if (tableQty==2){
             System.out.println("List of available tables for two people");
-                for (twoSeaterTable n : available_2_seats){
+                for (TwoSeaterTable n : getAvailable_2_seats){
                     System.out.println(n);
                 }
             Scanner input = new Scanner(System.in);
@@ -60,11 +58,11 @@ public class Restaurant_Reservation_Controller implements Reservations {
             // check each table for timeslot argument
             // if available, take booking name & add table obj to booked_2_seats array
 
-                for (twoSeaterTable n : available_2_seats) {
-                    if (twoSeaterTable.getTimeSlot == selectedTwoPersonTable) {
+                for (TwoSeaterTable n : getAvailable_2_seats()) {
+                    if (TwoSeaterTable.getTimeSlot == selectedTwoPersonTable) {
                         Scanner name = new Scanner(System.in);
                         System.out.println("Enter booking name: ");
-                        twoSeaterTable.setBookingName = input.next();
+                        TwoSeaterTable.setBookingName = input.next();
 
                         booked_2_seats.add(n);
                         break;
