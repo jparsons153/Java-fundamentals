@@ -7,7 +7,7 @@ public class FourSeaterTable extends Table{
     String seatingArea;
     //Boolean occasion;
     int timeSlot;
-    ArrayList<FourSeaterTable> available_4_seats;
+    String bookingName;
 
     public FourSeaterTable(int numbrSeats, String seatingArea, int timeSlot) {
         this.numbrSeats = numbrSeats;
@@ -15,25 +15,30 @@ public class FourSeaterTable extends Table{
         this.timeSlot = timeSlot;
     }
 
-    FourSeaterTable table2_1800 = new FourSeaterTable(4,"indoor",1800);
-    FourSeaterTable table2_2000 = new FourSeaterTable(4,"indoor",2000);
-
-    FourSeaterTable table4_1800 = new FourSeaterTable(4,"indoor",1800);
-    FourSeaterTable table4_2000 = new FourSeaterTable(4,"indoor",2000);
-
-    public ArrayList<FourSeaterTable> availableFourSeatTables (FourSeaterTable table2_1800, FourSeaterTable table2_2000, FourSeaterTable...v ){
-        available_4_seats.add(table2_1800);
-        available_4_seats.add(table2_2000);
-        available_4_seats.add(table4_1800);
-        available_4_seats.add(table4_2000);
-    return available_4_seats;
+    public FourSeaterTable() {
     }
 
-    public ArrayList<FourSeaterTable> getAvailable_4_seats() {
-        return available_4_seats;
+    public int getNumbrSeats() {
+        return numbrSeats;
     }
 
-    public void setAvailable_4_seats(ArrayList<FourSeaterTable> available_4_seats) {
-        this.available_4_seats = available_4_seats;
+    public void setNumbrSeats(int numbrSeats) {
+        this.numbrSeats = numbrSeats;
+    }
+
+    public int getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(int timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    public String getBookingName() {
+        return bookingName;
+    }
+
+    public void set_BookingName(String bookingName) {
+        this.bookingName = bookingName;
     }
 }
