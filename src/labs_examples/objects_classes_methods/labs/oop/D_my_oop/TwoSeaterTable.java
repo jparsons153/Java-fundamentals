@@ -3,21 +3,21 @@ package labs_examples.objects_classes_methods.labs.oop.D_my_oop;
 import java.util.ArrayList;
 
 public class TwoSeaterTable extends Table{
-    int numbrSeats;
-    String seatingArea;
-    int timeSlot;
-    //Boolean occasion;
+
     String bookingName;
 
-        public TwoSeaterTable(int numbrSeats, String seatingArea, int timeSlot) {
-            this.numbrSeats = numbrSeats;
-            this.seatingArea = seatingArea;
-            this.timeSlot = timeSlot;
-        }
+    public TwoSeaterTable(int tableNumber,int timeSlot) {
+        this.tableNumber = tableNumber;
+        this.numbrSeats = 2;
+        this.seatingArea = "indoor";
+        this.timeSlot = timeSlot;
 
-        public TwoSeaterTable(int numbrSeats, String seatingArea, int timeSlot, Boolean occasion, String bookingName) {
-            this.numbrSeats = numbrSeats;
-            this.seatingArea = seatingArea;
+    }
+
+        public TwoSeaterTable(int tableNumber,int timeSlot, String bookingName) {
+            this.tableNumber = tableNumber;
+            this.numbrSeats = 2;
+            this.seatingArea = "indoor";
             this.timeSlot = timeSlot;
             this.bookingName = bookingName;
         }
@@ -25,8 +25,8 @@ public class TwoSeaterTable extends Table{
     @Override
     public String toString() {
         return "TwoSeaterTable{" +
-                "numbrSeats=" + numbrSeats +
-                ", seatingArea='" + seatingArea + '\'' +
+                "tableNumber=" + tableNumber +
+                ", numbrSeats=" + numbrSeats +
                 ", timeSlot=" + timeSlot +
                 ", bookingName='" + bookingName + '\'' +
                 '}';
@@ -45,5 +45,9 @@ public class TwoSeaterTable extends Table{
 
     public void setBookingName(String bookingName) {
         this.bookingName = bookingName;
+    }
+
+    public void setTimeSlot(int timeSlot) {
+        this.timeSlot = timeSlot;
     }
 }
