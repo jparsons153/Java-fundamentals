@@ -22,6 +22,16 @@ public class TwoSeaterTable extends Table{
             this.bookingName = bookingName;
         }
 
+    @Override
+    public String toString() {
+        return "TwoSeaterTable{" +
+                "numbrSeats=" + numbrSeats +
+                ", seatingArea='" + seatingArea + '\'' +
+                ", timeSlot=" + timeSlot +
+                ", bookingName='" + bookingName + '\'' +
+                '}';
+    }
+
     public TwoSeaterTable() {
     }
 

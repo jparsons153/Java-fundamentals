@@ -5,25 +5,26 @@ import java.util.Scanner;
 
 public class Restaurant_Reservation_Controller implements Reservations {
 
-    public static void main(String[] args) {
 
-        reservationBookings();
-        checkReservations();
+    @Override
+    public void reservationBookings() {
+
     }
 
-    // objects
-    //  reservation interface
-    //  seater tables inherited from table - table (no. of seats, indoor / outdoor, int available timeslots) - done
+    @Override
+    public void checkReservations() {
 
-    // methods
-    //  occupied / check availability - look in available array for timeslot, check each table objects
-    //  make table reservations (time , people) - add table to bookedTable array
+    }
+
+    public static void main(String[] args) {
+                
+        ArrayList<TwoSeaterTable> twoTables = twoSeatTableNumbers();
+        ArrayList<FourSeaterTable> fourTables = fourSeatTableNumbers();
+        reservationBookings(twoTables, fourTables);
+        checkReservations(twoTables, fourTables);
+    }
 
     public static void reservationBookings(ArrayList<TwoSeaterTable> available_2_seats, ArrayList<FourSeaterTable> available_4_seats) {
-        // search array and return available array to select timeslot
-        // get seatMethod
-        // populate 2nd array of available table objects
-        // for each ask table in array, have you this time available?
 
         ArrayList<TwoSeaterTable> booked_2_seats = new ArrayList();
         ArrayList<FourSeaterTable> booked_4_seats = new ArrayList();
@@ -41,7 +42,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
                 System.out.println(n);
             }
             Scanner input = new Scanner(System.in);
-            System.out.println("Enter selected time (24hr e.g. 1930): ");
+            System.out.println("Enter selected time (1800 or 2000): ");
             int selectedTwoPersonTable = input.nextInt();
 
             // check each table for timeslot argument
@@ -81,31 +82,36 @@ public class Restaurant_Reservation_Controller implements Reservations {
         }
     }
 
-    public void checkReservations(ArrayList<TwoSeaterTable> available_2_seats) {
+    public static void checkReservations(ArrayList<TwoSeaterTable> booked_2_seats, ArrayList<FourSeaterTable> booked_4_seats) {
         // check booking name against reservation
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter booking name :");
         String booking_name = scan.next();
 
-        for (TwoSeaterTable i : available_2_seats) {
+        for (TwoSeaterTable i : booked_2_seats) {
             if(booking_name == i.getBookingName()){
-                System.out.println("Booking confirmed");
+                System.out.println("Booking confirmed for 2 persons");
+            }
+        }
+
+        for (FourSeaterTable j : booked_4_seats) {
+            if(booking_name == j.getBookingName()){
+                System.out.println("Booking confirmed for 4 persons");
             }
         }
     }
 
-    public static void tableNumbers(){
+    public static ArrayList<TwoSeaterTable> twoSeatTableNumbers() {
         ArrayList<TwoSeaterTable> available_2_seats = new ArrayList();
-        ArrayList<FourSeaterTable> available_4_seats = new ArrayList() ;
 
         // add available 2 seater tables to arraylist
-        TwoSeaterTable table1_1800 = new TwoSeaterTable(2,"indoor",1800); // replace with inheritance class table1, use super var for set arguments
-        TwoSeaterTable table1_2000 = new TwoSeaterTable(2,"indoor",2000);
-        TwoSeaterTable table3_1800 = new TwoSeaterTable(2,"indoor",1800);
-        TwoSeaterTable table3_2000 = new TwoSeaterTable(2,"indoor",2000);
-        TwoSeaterTable table5_1800 = new TwoSeaterTable(2,"indoor",1800);
-        TwoSeaterTable table5_2000 = new TwoSeaterTable(2,"indoor",2000);
+        TwoSeaterTable table1_1800 = new TwoSeaterTable(2, "indoor", 1800); // replace with inheritance class table1, use super var for set arguments
+        TwoSeaterTable table1_2000 = new TwoSeaterTable(2, "indoor", 2000);
+        TwoSeaterTable table3_1800 = new TwoSeaterTable(2, "indoor", 1800);
+        TwoSeaterTable table3_2000 = new TwoSeaterTable(2, "indoor", 2000);
+        TwoSeaterTable table5_1800 = new TwoSeaterTable(2, "indoor", 1800);
+        TwoSeaterTable table5_2000 = new TwoSeaterTable(2, "indoor", 2000);
 
         available_2_seats.add(table1_1800);
         available_2_seats.add(table1_2000);
@@ -113,6 +119,12 @@ public class Restaurant_Reservation_Controller implements Reservations {
         available_2_seats.add(table3_2000);
         available_2_seats.add(table5_1800);
         available_2_seats.add(table5_2000);
+
+        return available_2_seats;
+    }
+
+    public static ArrayList<FourSeaterTable> fourSeatTableNumbers(){
+        ArrayList<FourSeaterTable> available_4_seats = new ArrayList();
 
         // add available 4 seater tables to arraylist
         FourSeaterTable table2_1800 = new FourSeaterTable(4,"indoor",1800);
@@ -124,5 +136,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
         available_4_seats.add(table2_2000);
         available_4_seats.add(table4_1800);
         available_4_seats.add(table4_2000);
+
+        return available_4_seats;
     }
 }
