@@ -16,7 +16,7 @@ public class BlackjackController {
     public static void playBlackJack() {
 
         char requestCard;
-        Boolean AIbool;
+        Boolean boolAI;
 
         Deck fullDeck = new Deck(); // populate a new deck
         fullDeck.populateDeck();
@@ -73,8 +73,8 @@ public class BlackjackController {
 
                 handScore(computer);
 
-                AIbool = computer.computerAI(computer.hand.handValue); //if computer hand < 16, request another card
-                if (AIbool) {
+                boolAI = computer.computerAI(computer.hand.handValue); //if computer hand < 16, request another card
+                if (boolAI) {
                     System.out.println("Computer has taken another card");
                     deal(computer, fullDeck);
                 } else if (computer.hand.handValue >= 21) {
