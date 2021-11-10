@@ -5,18 +5,20 @@ import java.util.Scanner;
 
 public class Restaurant_Reservation_Controller implements Reservations {
 
+    static ArrayList<TwoSeaterTable> available_2_seats = new ArrayList();
+    static ArrayList<FourSeaterTable> available_4_seats = new ArrayList();
+    static ArrayList<TwoSeaterTable> booked_2_seats = new ArrayList();
+    static ArrayList<FourSeaterTable> booked_4_seats = new ArrayList();
+
     public static void main(String[] args) {
-
-        ArrayList<TwoSeaterTable> booked_2_seats = new ArrayList();
-        ArrayList<FourSeaterTable> booked_4_seats = new ArrayList();
-
-        ArrayList<TwoSeaterTable> twoTables = twoSeatTableNumbers();
-        ArrayList<FourSeaterTable> fourTables = fourSeatTableNumbers();
+        twoSeatTableNumbers();
+        fourSeatTableNumbers();
         reservationBookings();
         checkReservations();
     }
 
-    @Override
+
+   @Override
     public static void reservationBookings() {
 
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +28,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
         // for table of 2;
         if (tableQty == 2) {
             System.out.println("List of available tables for two people");
-            for (TwoSeaterTable i : twoTables) {
+            for (TwoSeaterTable i : available_2_seats) {
                 System.out.println(i);
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter selected time (1800 or 2000): ");
@@ -44,7 +46,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
         // for table of 4
         else if (tableQty == 4) {
             System.out.println("List of available tables for four people");
-            for (FourSeaterTable j : fourTables) {
+            for (FourSeaterTable j : available_4_seats) {
                 System.out.println(j);
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter selected time (1800 or 2000): ");
@@ -81,8 +83,8 @@ public class Restaurant_Reservation_Controller implements Reservations {
         }
     }
 
-    public static ArrayList<TwoSeaterTable> twoSeatTableNumbers() {
-        ArrayList<TwoSeaterTable> available_2_seats = new ArrayList();
+    @Override
+    public static void twoSeatTableNumbers() {
 
         // add available 2 seater tables to arraylist
         TwoSeaterTable table1_1800 = new TwoSeaterTable(1,1800); // replace with inheritance class table1, use super var for set arguments
@@ -99,11 +101,10 @@ public class Restaurant_Reservation_Controller implements Reservations {
         available_2_seats.add(table5_1800);
         available_2_seats.add(table5_2000);
 
-        return available_2_seats;
     }
 
-    public static ArrayList<FourSeaterTable> fourSeatTableNumbers(){
-        ArrayList<FourSeaterTable> available_4_seats = new ArrayList();
+    @Override
+    public static void fourSeatTableNumbers(){
 
         // TO DO: update constructors for 4 person table
 
@@ -117,7 +118,5 @@ public class Restaurant_Reservation_Controller implements Reservations {
         available_4_seats.add(table2_2000);
         available_4_seats.add(table4_1800);
         available_4_seats.add(table4_2000);
-
-        return available_4_seats;
     }
 }
