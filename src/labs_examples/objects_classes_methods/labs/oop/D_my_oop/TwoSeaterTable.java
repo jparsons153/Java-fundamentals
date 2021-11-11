@@ -14,14 +14,6 @@ public class TwoSeaterTable extends Table{
 
     }
 
-        public TwoSeaterTable(int tableNumber,int timeSlot, String bookingName) {
-            this.tableNumber = tableNumber;
-            this.numbrSeats = 2;
-            this.seatingArea = "indoor";
-            this.timeSlot = timeSlot;
-            this.bookingName = bookingName;
-        }
-
     @Override
     public String toString() {
         return "TwoSeaterTable{" +
@@ -30,9 +22,6 @@ public class TwoSeaterTable extends Table{
                 ", timeSlot=" + timeSlot +
                 ", bookingName='" + bookingName + '\'' +
                 '}';
-    }
-
-    public TwoSeaterTable() {
     }
 
     public int getTimeSlot() {
@@ -47,7 +36,4 @@ public class TwoSeaterTable extends Table{
         this.bookingName = bookingName;
     }
 
-    public void setTimeSlot(int timeSlot) {
-        this.timeSlot = timeSlot;
-    }
 }

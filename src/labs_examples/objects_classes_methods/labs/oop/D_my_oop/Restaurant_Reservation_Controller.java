@@ -11,15 +11,17 @@ public class Restaurant_Reservation_Controller implements Reservations {
     static ArrayList<FourSeaterTable> booked_4_seats = new ArrayList();
 
     public static void main(String[] args) {
-        twoSeatTableNumbers();
-        fourSeatTableNumbers();
-        reservationBookings();
-        checkReservations();
+        Restaurant_Reservation_Controller obj = new Restaurant_Reservation_Controller();
+
+        obj.twoSeatTableNumbers();
+        obj.fourSeatTableNumbers();
+        obj.reservationBookings();
+        obj.checkReservations();
     }
 
 
    @Override
-    public static void reservationBookings() {
+    public void reservationBookings() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter number of people for table reservation: ");
@@ -30,8 +32,10 @@ public class Restaurant_Reservation_Controller implements Reservations {
             System.out.println("List of available tables for two people");
             for (TwoSeaterTable i : available_2_seats) {
                 System.out.println(i);
+            }
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter selected time (1800 or 2000): ");
+            for (TwoSeaterTable i : available_2_seats){
                 if(i.getTimeSlot() == (input.nextInt())){
                     Scanner name = new Scanner(System.in);
                     System.out.println("Enter booking name: ");
@@ -48,8 +52,10 @@ public class Restaurant_Reservation_Controller implements Reservations {
             System.out.println("List of available tables for four people");
             for (FourSeaterTable j : available_4_seats) {
                 System.out.println(j);
+            }
                 Scanner input = new Scanner(System.in);
                 System.out.println("Enter selected time (1800 or 2000): ");
+            for (FourSeaterTable j : available_4_seats) {
                 if (j.getTimeSlot() == (input.nextInt())) {
                     Scanner name2 = new Scanner(System.in);
                     System.out.println("Enter booking name: ");
@@ -63,7 +69,7 @@ public class Restaurant_Reservation_Controller implements Reservations {
     }
 
     @Override
-    public static void checkReservations() {
+    public void checkReservations() {
     // check booking name against reservation
 
         Scanner scan = new Scanner(System.in);
@@ -74,20 +80,24 @@ public class Restaurant_Reservation_Controller implements Reservations {
             if(booking_name == i.getBookingName()){
                 System.out.println("Booking confirmed for 2 persons");
             }
+            System.out.println("Tables booked for Two People for tonight :");
+            System.out.println(i);
         }
 
         for (FourSeaterTable j : booked_4_seats) {
             if(booking_name == j.getBookingName()){
                 System.out.println("Booking confirmed for 4 persons");
             }
+            System.out.println("Tables booked for Four People for tonight :");
+            System.out.println(j);
         }
     }
 
     @Override
-    public static void twoSeatTableNumbers() {
+    public void twoSeatTableNumbers() {
 
         // add available 2 seater tables to arraylist
-        TwoSeaterTable table1_1800 = new TwoSeaterTable(1,1800); // replace with inheritance class table1, use super var for set arguments
+        TwoSeaterTable table1_1800 = new TwoSeaterTable(1,1800);
         TwoSeaterTable table1_2000 = new TwoSeaterTable(1,2000);
         TwoSeaterTable table3_1800 = new TwoSeaterTable(3, 1800);
         TwoSeaterTable table3_2000 = new TwoSeaterTable(3, 2000);
@@ -104,15 +114,13 @@ public class Restaurant_Reservation_Controller implements Reservations {
     }
 
     @Override
-    public static void fourSeatTableNumbers(){
-
-        // TO DO: update constructors for 4 person table
+    public void fourSeatTableNumbers(){
 
         // add available 4 seater tables to arraylist
-        FourSeaterTable table2_1800 = new FourSeaterTable(4,"indoor",1800);
-        FourSeaterTable table2_2000 = new FourSeaterTable(4,"indoor",2000);
-        FourSeaterTable table4_1800 = new FourSeaterTable(4,"indoor",1800);
-        FourSeaterTable table4_2000 = new FourSeaterTable(4,"indoor",2000);
+        FourSeaterTable table2_1800 = new FourSeaterTable(4,1800);
+        FourSeaterTable table2_2000 = new FourSeaterTable(4,2000);
+        FourSeaterTable table4_1800 = new FourSeaterTable(4,1800);
+        FourSeaterTable table4_2000 = new FourSeaterTable(4,2000);
 
         available_4_seats.add(table2_1800);
         available_4_seats.add(table2_2000);

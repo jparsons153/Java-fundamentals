@@ -4,7 +4,6 @@ public class Table {
     int tableNumber;
     int numbrSeats;
     String seatingArea;
-    Boolean occasion;
     int timeSlot;
 
 }

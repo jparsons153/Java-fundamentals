@@ -3,35 +3,28 @@ package labs_examples.objects_classes_methods.labs.oop.D_my_oop;
 import java.util.ArrayList;
 
 public class FourSeaterTable extends Table{
-    int numbrSeats;
-    String seatingArea;
-    //Boolean occasion;
-    int timeSlot;
+
     String bookingName;
 
-    public FourSeaterTable(int numbrSeats, String seatingArea, int timeSlot) {
-        this.numbrSeats = numbrSeats;
-        this.seatingArea = seatingArea;
+    public FourSeaterTable(int tableNumber,int timeSlot) {
+        this.tableNumber = tableNumber;
+        this.numbrSeats = 4;
+        this.seatingArea = "indoor";
         this.timeSlot = timeSlot;
     }
 
-    public FourSeaterTable() {
-    }
-
-    public int getNumbrSeats() {
-        return numbrSeats;
-    }
-
-    public void setNumbrSeats(int numbrSeats) {
-        this.numbrSeats = numbrSeats;
+    @Override
+    public String toString() {
+        return "FourSeaterTable{" +
+                "tableNumber=" + tableNumber +
+                ", numbrSeats=" + numbrSeats +
+                ", timeSlot=" + timeSlot +
+                ", bookingName='" + bookingName + '\'' +
+                '}';
     }
 
     public int getTimeSlot() {
         return timeSlot;
-    }
-
-    public void setTimeSlot(int timeSlot) {
-        this.timeSlot = timeSlot;
     }
 
     public String getBookingName() {
