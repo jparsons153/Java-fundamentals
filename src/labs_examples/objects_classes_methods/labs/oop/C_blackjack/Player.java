@@ -5,11 +5,13 @@ public class Player { // player info
     Hand hand = new Hand();
     double potValue; //(the amount of money they have)
     double bet;
+    static int gamesWon;
 
-    public Player(String name, int potValue, int bet) {
+    public Player(String name, int potValue) {
         this.name = name;
         this.potValue = potValue;
-        this.bet = bet;
+        this.bet = 0;
+        this.gamesWon =0;
     }
 
     public String getName() {

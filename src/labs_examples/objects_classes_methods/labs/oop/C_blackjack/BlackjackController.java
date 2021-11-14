@@ -21,29 +21,17 @@ public class BlackjackController {
         Deck fullDeck = new Deck(); // populate a new deck
         fullDeck.populateDeck();
 
-        Player computer = new Player("computer", 0, 0); // create computer player
+        Player computer = new Player("computer", 0); // create computer player
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter player username: ");
         String input = scanner.nextLine();
-        Player player = new Player(input, 100, 0); // create player object with name input from console
+        Player player = new Player(input, 100); // create player object with name input from console
 
         System.out.println("Initial pot value $" + player.getPotValue());
 
         do {
 
-            player.hand.cards.clear(); // clear each hand from previous play
-            computer.hand.cards.clear();
-
-            Scanner takeBet = new Scanner(System.in);
-            System.out.print("Enter bet $"); // take a bet from the player
-            player.setBet(takeBet.nextDouble());
-            System.out.print("\n");
-
-
-                if(player.getBet() > player.potValue){
-                    System.out.println("Enter a bet < pot value");
-                    continue;
-                }
+            takeBet(player,computer);
 
            // dealTesting(player, fullDeck); // assign player 2 cards for TESTING
 
@@ -88,34 +76,25 @@ public class BlackjackController {
             handScore(computer);
             handCards(computer);
 
-                if (player.hand.handValue > computer.hand.handValue && player.hand.handValue < 21) {
-                    player.potValue = 2 * player.getBet() + player.potValue;
-                    System.out.println("\n" + player.getName() +" has won!!");
-                    System.out.println("Your potValue = $" + player.getPotValue());
-                }
-                else if (player.hand.handValue == 21) {
-                    player.potValue = 2.5 * player.getBet() + player.potValue;
-                    System.out.println("\n" + player.getName() + " has hit BlackJack, congratulations!!");
-                    System.out.println("Your potValue = $" + player.getPotValue());
-                }
-
-                else if (computer.hand.handValue > player.hand.handValue && computer.hand.handValue <= 21) {
-                    player.potValue = 0;
-                    System.out.println("\n" + "Computer has won, try again!!" + "\n");
-                }
-                else if ((player.hand.handValue == computer.hand.handValue && player.hand.handValue < 21)) {
-                    player.potValue = player.getBet();
-                    System.out.println("\n" + "Draw" + "\n");
-                }
-                else {
-                    player.potValue = 0;
-                    System.out.println("\n" + "Game over Try again" + "\n");
-                }
-
-            System.out.println("\n" + "Your current pot value is $" + player.potValue);
-            System.out.println("Do you wish to play another game ");
+            gamewinner(player,computer); //determine game winner & keep game winner tally
 
         } while (player.getBet() < player.potValue);
+    }
+
+    private static void takeBet(Player player, Player computer){
+        player.hand.cards.clear(); // clear each hand from previous play
+        computer.hand.cards.clear();
+
+        Scanner takeBet = new Scanner(System.in);
+        System.out.print("Enter bet $"); // take a bet from the player
+        player.setBet(takeBet.nextDouble());
+        System.out.print("\n");
+
+
+        if(player.getBet() > player.potValue){
+            System.out.println("Enter a bet < pot value");
+            return;
+        }
     }
 
     private static void dealTesting(Player player, Deck fulldeck) {
@@ -148,7 +127,8 @@ public class BlackjackController {
 
             myCards.add(myCard); // add card object from array at random number to playerCards Arraylist
 
-            fullDeck.getUsedCards().add(random_int);   // add card number to usedCard arraylist
+            fullDeck.getUsedCards().add(random_int); // add card number to usedCard arraylist
+            
 
         } while (!fullDeck.getUsedCards().contains(random_int));
     }
@@ -199,5 +179,38 @@ public class BlackjackController {
 
     private static boolean greaterthan21 (Hand hand){
         return hand.handValue >= 21; // return true if >=21 otherwise return false
+    }
+
+    private static void gamewinner(Player player, Player computer){
+        if (player.hand.handValue > computer.hand.handValue && player.hand.handValue < 21) {
+            player.potValue = 2 * player.getBet() + player.potValue;
+            System.out.println("\n" + player.getName() +" has won!!");
+            player.gamesWon +=1;
+            System.out.println(player.getName() + " Games won = " + player.gamesWon);
+            System.out.println("Your potValue = $" + player.getPotValue());
+        }
+        else if (player.hand.handValue == 21) {
+            player.potValue = 2.5 * player.getBet() + player.potValue;
+            System.out.println("\n" + player.getName() + " has hit BlackJack, congratulations!!");
+            player.gamesWon +=1;
+            System.out.println(player.getName() + " Games won = " + player.gamesWon);
+            System.out.println("Your potValue = $" + player.getPotValue());
+        }
+        else if (computer.hand.handValue > player.hand.handValue && computer.hand.handValue <= 21) {
+            player.bet = 0;
+            System.out.println("\n" + "Computer has won, try again!!" + "\n");
+            computer.gamesWon +=1;
+        }
+        else if ((player.hand.handValue == computer.hand.handValue && player.hand.handValue < 21)) {
+            player.potValue = player.potValue + player.getBet();
+            System.out.println("\n" + "Draw" + "\n");
+        }
+        else {
+            player.bet = 0;
+            System.out.println("\n" + "Game over Try again" + "\n");
+        }
+
+        System.out.println("\n" + "Your current pot value is $" + player.potValue);
+        System.out.println("Do you wish to play another game ");
     }
 }
