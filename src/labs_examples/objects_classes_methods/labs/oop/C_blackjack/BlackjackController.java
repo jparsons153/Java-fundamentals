@@ -128,7 +128,7 @@ public class BlackjackController {
             myCards.add(myCard); // add card object from array at random number to playerCards Arraylist
 
             fullDeck.getUsedCards().add(random_int); // add card number to usedCard arraylist
-            
+
 
         } while (!fullDeck.getUsedCards().contains(random_int));
     }
