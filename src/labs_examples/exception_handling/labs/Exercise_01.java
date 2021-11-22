@@ -7,3 +7,17 @@ package labs_examples.exception_handling.labs;
  *
  */
 
+class TryCatch {
+
+    public static void main(String[] args) {
+        int a = 0;
+        int b = 2;
+
+        try{
+            int c = b/a;
+        } catch (ArithmeticException one){
+            System.out.print("Caught arithmetic exception");
+        }
+    }
+}
+
