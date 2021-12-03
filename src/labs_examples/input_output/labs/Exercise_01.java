@@ -11,7 +11,7 @@ import java.io.*;
  *
  */
 
-class Example {
+class ReadWrite {
     public static void main(String[] args) {
 
         FileInputStream inputStream = null;
