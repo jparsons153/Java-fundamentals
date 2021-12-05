@@ -23,7 +23,6 @@ class ReadWriteEncryption {
 
         encrypte(fileReadPath, fileWritePath);
         decrypte(fileReadPath, fileWritePath);
-
     }
 
     public static void encrypte(String fileReadPath, String fileWritePath) {
@@ -35,12 +34,9 @@ class ReadWriteEncryption {
             inputStream = new BufferedReader(new FileReader(fileReadPath));
             outputStream = new PrintWriter(new FileWriter(fileWritePath));
 
-            //char[] buffer = new char[5]; // char buffer of 5
             int charRead;
 
             do {
-                //TO-DO re-instate buffer;
-
 
                 if ((charRead = inputStream.read()) != -1) { // if end of file is not reached change 'a' to '-' and 'e' to '~'
                     if (charRead == 'a') {
@@ -84,7 +80,6 @@ class ReadWriteEncryption {
             System.out.println("Decrypting file....\n");
 
             do {
-                //charRead = inputStream.read();
 
                 if ((charRead = inputStream.read()) != -1) { // if end of file is not reached change 'a' to '-' and 'e' to '~'
                     if (charRead == '-') {
@@ -101,7 +96,6 @@ class ReadWriteEncryption {
 
         } finally {
             // close connections
-            // replace with try with resources
 
             try {
                 inputStream.close();
