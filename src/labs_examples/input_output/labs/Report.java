@@ -32,6 +32,22 @@ public class Report {
         this.date = date;
     }
 
+    public String getTool() {
+        return tool;
+    }
+
+    public String getEquipmentNumber() {
+        return equipmentNumber;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "Report{" +

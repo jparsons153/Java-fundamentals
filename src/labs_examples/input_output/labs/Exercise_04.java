@@ -2,14 +2,10 @@ package labs_examples.input_output.labs;
 
 import labs_examples.input_output.examples.csv_parser.Student;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
- *
  *      Following the video examples and source code found in the src/labs_examples/input_output/examples/csv_parser
  *      package, create a new application that will parse a custom CSV file that you created and map each line of the
  *      csv to a custom POJO that you create.
@@ -18,7 +14,6 @@ import java.util.ArrayList;
  *      and added each object to an arraylist, print out each object using the objects custom toString() method.
  *
  *      Then, write the arraylist of objects back out to a new .csv file. Ensure that the resulting csv file is valid.
- *
  */
 
 
@@ -34,18 +29,27 @@ class CSV_Parse_Reports {
 
     public static void main(String[] args) {
 
-        csvToObj();
+        // ArrayList of Reports
+        ArrayList<Report> reports = new ArrayList();
+
+    try{
+        csvToObj(reports);
+        objToCsv(reports);
+
+    }catch (
+        FileNotFoundException e) {
+            e.printStackTrace();
+    } catch (IOException exc) {
+            exc.printStackTrace();
+    }
 
     }
-    public static void csvToObj(){
-
-    // ArrayList of Reports
-    ArrayList<Report> reports = new ArrayList();
+    private static void csvToObj(ArrayList<Report> reports) throws IOException {
 
     String filePath = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\Reports.csv";
 
-        try (BufferedReader br =
-                     new BufferedReader(new FileReader(filePath))) {
+        BufferedReader br =
+                     new BufferedReader(new FileReader(filePath));
 
             String line;
 
@@ -54,17 +58,32 @@ class CSV_Parse_Reports {
                 String[] values = line.split(",");
                 reports.add(mapValuesToReportObj(values));
             }
-        } catch (
-            FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (
-            IOException e) {
-            e.printStackTrace();
-            }
 
             // Print toString for each report in Arraylist
             for(Report report : reports){
                 System.out.println(report.toString());
+            }
+        }
+
+    private static void objToCsv(ArrayList<Report> reports) throws IOException {
+        // create new csv write file
+        // for each object Report in reports,
+        // let tool, equipment number, author & date = one line parse by ","
+        // carriage return \n
+        // write to file
+
+        String writeFilePath = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\ObjToCsv.csv";
+
+        PrintWriter outputStream = null;
+
+            outputStream = new PrintWriter(new FileWriter(writeFilePath));
+
+            for (Report report : reports) {
+
+                // for each object write "getTool" + "," + "equipNo." etc. to new file
+                // carriage return
+                outputStream.println(report.getTool() + "," + report.getEquipmentNumber() + ","
+                        + report.getAuthor() + "," + report.getDate());
             }
     }
 
