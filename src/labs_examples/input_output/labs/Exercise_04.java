@@ -46,20 +46,20 @@ class CSV_Parse_Reports {
 
     private static void csvToObj(ArrayList<Report> reports) throws IOException {
 
-    String filePath = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\Reports.csv";
-    BufferedReader br = new BufferedReader(new FileReader(filePath));
-    String line;
+        String filePath = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\Reports.csv";
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
 
         // parse csv file and add object to Reports arraylist
-        while ((line = br.readLine()) != null) {
-            String[] values = line.split(",");
-            reports.add(mapValuesToReportObj(values));
-        }
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                reports.add(mapValuesToReportObj(values));
+            }
 
         // Print toString for each report in Arraylist
-        for(Report report : reports){
-            System.out.println(report.toString());
-        }
+            for(Report report : reports){
+                System.out.println(report.toString());
+            }
     }
 
     private static void objToCsv(ArrayList<Report> reports) throws IOException {
