@@ -1,5 +1,7 @@
 package labs_examples.input_output.labs;
 
+import java.io.*;
+
 /**
  * Input/Output Exercise 3: variety
  *
@@ -9,3 +11,37 @@ package labs_examples.input_output.labs;
  *    4) Demonstrate the use of the DataInputStream and DataOutputStream
  *
  */
+
+class Byte_Streams {
+
+    public static void main(String[] args) {
+
+        addInputStreams();
+
+    }
+
+    private static void addInputStreams() {
+
+        InputStream input1 = null;
+        InputStream input2 = null;
+
+        try{
+
+            input1 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data");
+            input2 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\random.dat");
+            SequenceInputStream sequenceInputStream = new SequenceInputStream(input1, input2);
+
+            int read = sequenceInputStream.read();
+            while (read != -1) {
+                System.out.println(read);
+                read = sequenceInputStream.read();
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
+    }
+
+}
