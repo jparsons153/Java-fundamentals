@@ -22,7 +22,7 @@ import java.util.ArrayList;
 // map each line to POJO - DONE
 // add object to arrayList - DONE
 // print object toString - DONE
-// write objects in arrayList to new csv file
+// write objects in arrayList to new csv file - DONE
 // catch exceptions - DONE, throw to main method
 
 class CSV_Parse_Reports {
@@ -60,6 +60,7 @@ class CSV_Parse_Reports {
             for(Report report : reports){
                 System.out.println(report.toString());
             }
+        br.close();
     }
 
     private static void objToCsv(ArrayList<Report> reports) throws IOException {
@@ -74,9 +75,12 @@ class CSV_Parse_Reports {
             for (Report report : reports) {
 
                 // for each object write "getTool" + "," + "equipNo." etc. to new file
-                fw.write(report.getTool() + "," + report.getEquipmentNumber() + ","
-                        + report.getAuthor() + "," + report.getDate());
+                String str = report.getTool() + "," + report.getEquipmentNumber() + ","
+                        + report.getAuthor() + "," + report.getDate() + "\n";
+
+                fw.write(str,0,str.length());
             }
+        fw.close();
     }
 
     private static Report mapValuesToReportObj(String[] values){
