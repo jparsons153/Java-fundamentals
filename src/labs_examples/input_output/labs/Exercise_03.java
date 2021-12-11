@@ -16,57 +16,49 @@ class Byte_Streams {
 
     public static void main(String[] args) {
 
+    try{
         addInputStreams();
 
         pushBackStream();
 
+    } catch (FileNotFoundException ex) {
+        ex.printStackTrace();
+
+    } catch (IOException exc) {
+        exc.printStackTrace();
     }
 
-    private static void addInputStreams() {
+    }
+
+    private static void addInputStreams() throws IOException {
 
         InputStream input1 = null;
         InputStream input2 = null;
 
-        try {
+        input1 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data");
+        input2 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\random.dat");
+        SequenceInputStream sequenceInputStream = new SequenceInputStream(input1, input2);
 
-            input1 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data");
-            input2 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\random.dat");
-            SequenceInputStream sequenceInputStream = new SequenceInputStream(input1, input2);
-
-            int read = sequenceInputStream.read();
-            while (read != -1) {
-                System.out.println(read);
-                read = sequenceInputStream.read();
-            }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-
-        } catch (IOException exc) {
-            exc.printStackTrace();
+        int read = sequenceInputStream.read();
+        while (read != -1) {
+            System.out.println(read);
+            read = sequenceInputStream.read();
         }
     }
 
-    private static void pushBackStream() {
+    private static void pushBackStream() throws IOException {
 
         // set limit for bytes to be unread
         int limit = 8;
 
-        try {
-            PushbackInputStream input = new PushbackInputStream(new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data"), limit);
+        PushbackInputStream input = new PushbackInputStream(new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data"), limit);
 
-            int data = input.read();
+        int data = input.read();
 
-                byte byteRead = (byte) data;
-                System.out.println("Pushback input stream");
-                System.out.println(byteRead);
-                input.unread(byteRead);
-                data = input.read();
-
-
-        }catch (FileNotFoundException ex){
-            ex.printStackTrace();
-        }catch (IOException exc){
-            exc.printStackTrace();
-        }
+            byte byteRead = (byte) data;
+            System.out.println("Pushback input stream");
+            System.out.println(byteRead);
+            input.unread(byteRead);
+            data = input.read();
     }
 }
