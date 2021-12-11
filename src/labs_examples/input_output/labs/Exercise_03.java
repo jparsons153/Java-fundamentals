@@ -18,6 +18,8 @@ class Byte_Streams {
 
         addInputStreams();
 
+        pushBackStream();
+
     }
 
     private static void addInputStreams() {
@@ -25,7 +27,7 @@ class Byte_Streams {
         InputStream input1 = null;
         InputStream input2 = null;
 
-        try{
+        try {
 
             input1 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data");
             input2 = new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\random.dat");
@@ -44,4 +46,27 @@ class Byte_Streams {
         }
     }
 
+    private static void pushBackStream() {
+
+        // set limit for bytes to be unread
+        int limit = 8;
+
+        try {
+            PushbackInputStream input = new PushbackInputStream(new FileInputStream("C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\byte_data"), limit);
+
+            int data = input.read();
+
+                byte byteRead = (byte) data;
+                System.out.println("Pushback input stream");
+                System.out.println(byteRead);
+                input.unread(byteRead);
+                data = input.read();
+
+
+        }catch (FileNotFoundException ex){
+            ex.printStackTrace();
+        }catch (IOException exc){
+            exc.printStackTrace();
+        }
+    }
 }
