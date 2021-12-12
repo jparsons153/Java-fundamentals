@@ -186,3 +186,41 @@ class CharacterStreams {
             }
     }
 }
+
+class dataInputStream {
+
+    public static void main(String[] args) {
+
+        String dataFile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\dataInput.bin";
+
+        try {
+
+            readWriteData(dataFile);
+
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private static void readWriteData(String dataFile) throws IOException {
+
+        DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(dataFile));
+
+            dataOutputStream.writeInt(120);
+            dataOutputStream.writeDouble(10.15);
+
+        dataOutputStream.close();
+
+        DataInputStream dataInputStream = new DataInputStream(new FileInputStream(dataFile));
+
+            int i = dataInputStream.readInt();
+            double db = dataInputStream.readDouble();
+
+        dataInputStream.close();
+
+        System.out.println("Reading integers " + i);
+        System.out.println("Reading doubles " + db);
+
+    }
+
+}
