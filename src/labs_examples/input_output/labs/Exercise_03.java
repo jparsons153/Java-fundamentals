@@ -7,7 +7,7 @@ import java.io.*;
  *    1) Demonstrate the usage of at least two additional Byte Streams - DONE
  *    2) Demonstrate the usage of at least two additional Character Streams - DONE
  *    3) Demonstrate using a buffer on one of the Byte Streams and one of the Character Streams - DONE
- *    4) Demonstrate the use of the DataInputStream and DataOutputStream
+ *    4) Demonstrate the use of the DataInputStream and DataOutputStream - DONE
  */
 
 // Exercise 03 - 1) Byte Streams
@@ -59,9 +59,6 @@ class Byte_Streams {
         PushbackInputStream input = new PushbackInputStream(new FileInputStream(file1), limit);
 
         int data = input.read();
-
-        // TODO FOR loop - read, unread , read
-        // TODO print to console
 
         byte byteRead = (byte) data;
         System.out.println("Pushback input stream");
