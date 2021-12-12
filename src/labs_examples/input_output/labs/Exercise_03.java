@@ -6,7 +6,7 @@ import java.io.*;
  * Input/Output Exercise 3: variety
  *    1) Demonstrate the usage of at least two additional Byte Streams - DONE
  *    2) Demonstrate the usage of at least two additional Character Streams - DONE
- *    3) Demonstrate using a buffer on one of the Byte Streams and one of the Character Streams
+ *    3) Demonstrate using a buffer on one of the Byte Streams and one of the Character Streams - DONE
  *    4) Demonstrate the use of the DataInputStream and DataOutputStream
  */
 
@@ -112,6 +112,9 @@ class CharacterStreams {
 
             objStream(objFile);
 
+            bufferReader(charFile);
+
+
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
 
@@ -167,5 +170,19 @@ class CharacterStreams {
         System.out.println(reportRead.author);
     }
 
-// Exercise 03 - 3) Buffer Byte Streams
+// Exercise 03 - 3) Buffer Character Streams
+
+    private static void bufferReader(String charFile) throws IOException {
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(charFile));
+
+        String line = bufferedReader.readLine();
+
+        System.out.println("\n");
+
+            while(line != null){
+                System.out.println(line);
+                line = bufferedReader.readLine();
+            }
+    }
 }
