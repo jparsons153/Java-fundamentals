@@ -4,12 +4,10 @@ import java.io.*;
 
 /**
  * Input/Output Exercise 3: variety
- *
  *    1) Demonstrate the usage of at least two additional Byte Streams - DONE
  *    2) Demonstrate the usage of at least two additional Character Streams - DONE
  *    3) Demonstrate using a buffer on one of the Byte Streams and one of the Character Streams
  *    4) Demonstrate the use of the DataInputStream and DataOutputStream
- *
  */
 
 // Exercise 03 - 1) Byte Streams
@@ -25,6 +23,8 @@ class Byte_Streams {
                 addInputStreams(file1,file2);
 
                 pushBackStream(file1);
+
+                bufferByteStream(file1);
 
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -60,14 +60,32 @@ class Byte_Streams {
 
         int data = input.read();
 
-        // FOR loop - read, unread , read
-        // print to console
+        // TODO FOR loop - read, unread , read
+        // TODO print to console
 
         byte byteRead = (byte) data;
         System.out.println("Pushback input stream");
         System.out.println(byteRead);
         input.unread(byteRead);
         data = input.read();
+    }
+
+// Exercise 03 - 3) Buffer Byte Streams
+
+
+    private static void bufferByteStream(String file1) throws IOException {
+
+        // Use buffer equal to PC L1 cache = 128KB
+        int bufferSize = 128 * 1024;
+
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file1));
+
+            int data = bufferedInputStream.read();
+                while(data != -1){
+                    data = bufferedInputStream.read();
+                }
+
+        bufferedInputStream.close();
     }
 }
 
@@ -105,8 +123,9 @@ class CharacterStreams {
         }
     }
 
-    // first Character Stream - Line Reader
-    public static void lineReader(String charFile) throws IOException {
+// first Character Stream - Line Reader
+
+    private static void lineReader(String charFile) throws IOException {
 
         LineNumberReader lineNumberReader = new LineNumberReader(new FileReader(charFile));
 
@@ -123,7 +142,7 @@ class CharacterStreams {
 
 // second Character Stream - Object Stream
 
-    public static void objStream(String objFile) throws IOException, ClassNotFoundException {
+    private static void objStream(String objFile) throws IOException, ClassNotFoundException {
 
         ObjectOutputStream objectOutputStream =
                 new ObjectOutputStream(new FileOutputStream(objFile));
@@ -147,4 +166,6 @@ class CharacterStreams {
         System.out.println(reportRead.tool);
         System.out.println(reportRead.author);
     }
+
+// Exercise 03 - 3) Buffer Byte Streams
 }
