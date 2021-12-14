@@ -18,6 +18,13 @@ class ThreadController{
 
         thread_1.start();
         thread_2.start();
+
+            try{
+                thread_1.join();
+                thread_2.join();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
     }
 }
 
