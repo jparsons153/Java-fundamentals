@@ -9,7 +9,15 @@ package labs_examples.multi_threading.labs;
 class ThreadController{
 
     public static void main(String[] args) {
-        ExtendingThread thread1 = new ExtendingThread("Thread_1");
+
+        ExtendingThread thread_1 = new ExtendingThread("Thread_1");
+        ExtendingThread thread_2 = new ExtendingThread("Thread_2");
+
+        thread_1.setPriority(Thread.MAX_PRIORITY);
+        thread_2.setPriority(Thread.MIN_PRIORITY);
+
+        thread_1.start();
+        thread_2.start();
     }
 }
 
@@ -18,7 +26,7 @@ class ExtendingThread extends Thread {
 
     ExtendingThread(String name){
         super(name);
-        start();
+        //start();
     }
 
     @Override
