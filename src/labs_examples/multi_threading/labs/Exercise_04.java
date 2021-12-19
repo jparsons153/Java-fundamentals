@@ -8,9 +8,12 @@ package labs_examples.multi_threading.labs;
 
 // Synchronized block
 
+// Synchronized method
+
 class PrintLine {
 
-    public void print(String line) {
+    // added synchronized keyword for Synchronized method
+    public synchronized void print(String line) {
 
         System.out.println("Print line" + "\n" + line);
 
@@ -45,11 +48,13 @@ class Sender implements Runnable {
 
         @Override
         public void run () {
-            synchronized (prntln) {
+
+            // commented out synchronized block
+           // synchronized (prntln) {
                 prntln.print(line);
             }
         }
-    }
+    //}
 
     class Controller {
         public static void main(String[] args) throws InterruptedException {
