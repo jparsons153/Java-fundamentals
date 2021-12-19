@@ -24,39 +24,41 @@ class PrintLine {
     }
 }
 
-class Sender extends Thread {
-    private String line;
-    private Thread t;
+class Sender implements Runnable {
+
+    String line;
+    Thread t;
     PrintLine prntln;
 
-    // Receives a message object and a string
-    // prints message
-    Sender(String s, PrintLine obj){
+    public Sender(String name, String s, PrintLine obj) throws InterruptedException {
+        t = new Thread(this, name);
         line = s;
         prntln = obj;
-    }
-
-    public void run(){
-        synchronized (prntln){
-            prntln.print(line);
-        }
-    }
-}
-
-class Controller {
-    public static void main(String[] args) {
-        PrintLine prntln = new PrintLine();
-        Sender s1 = new Sender("printing from thread #1", prntln);
-        Sender s2 = new Sender("printing from thread #2", prntln);
-
-        s1.start();
-        s2.start();
 
         try {
-            s1.join();
-            s2.join();
-        } catch (Exception e) {
-            e.printStackTrace();
+            t.start();
+            t.join();
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
     }
-}
+
+        @Override
+        public void run () {
+            synchronized (prntln) {
+                prntln.print(line);
+            }
+        }
+    }
+
+    class Controller {
+        public static void main(String[] args) throws InterruptedException {
+            try {
+                PrintLine prntln = new PrintLine();
+                Sender s1 = new Sender("s1", "printing from thread #1", prntln);
+                Sender s2 = new Sender("s1", "printing from thread #2", prntln);
+            }catch(InterruptedException ex){
+                    ex.printStackTrace();
+                }
+        }
+    }
