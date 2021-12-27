@@ -24,12 +24,18 @@ enum Month{
     November (11, 30),
     December (12, 31);
 
+    private final String name;
     private final int monthNumber;
     private final int calendarDays;
 
     Month(int monthNumber, int calendarDays) {
+        this.name = name();
         this.monthNumber = monthNumber;
         this.calendarDays = calendarDays;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getMonthNumber() {
@@ -50,7 +56,7 @@ class MonthController {
         String s = scanner.next();
 
         for(Month m: Month.values()){
-            if(m.equals(s)) {
+            if(m.getName().equals(s)) {
                 System.out.println(m.getCalendarDays());
             }
         }

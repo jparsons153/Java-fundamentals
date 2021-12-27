@@ -29,7 +29,7 @@ class Exercise_03 {
         list.add("too hot to hoot");
         list.add("borrow or rob");
 
-        Integer elementCount = countElements(list);
+ //       Integer elementCount = countElements(list);
 
 // Exercise 3) -3
 
@@ -54,10 +54,10 @@ class Exercise_03 {
         intArray.add(15);
         intArray.add(20);
 
-        Integer maxResult = largestEle(intArray);
+  //      Integer maxResult = largestEle(intArray);
 
     }
-
+/*
     // List can be ArrayList of LinkedList, generic for list type and primitive type?
     private static <E extends List, T extends Number> int largestEle(E <T> list) {
         int beginIndex;
@@ -80,7 +80,7 @@ class Exercise_03 {
         }
         return max;
     }
-
+**/
 
     private static <E> E[] swapValues(E[] arra) {
         E tempVar1 = null;
