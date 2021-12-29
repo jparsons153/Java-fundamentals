@@ -6,3 +6,4 @@ package labs_examples.lambdas.labs;
 public interface Exercise_01_Interface {
     void absFunction();
 }
+
