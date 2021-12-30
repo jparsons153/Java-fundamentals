@@ -20,17 +20,17 @@ class Exercise_03 {
         double sum = sumNums(4.24, 6.26);
 
 // Exercise 3) -2
-    // try arraylist
-        LinkedList<String> list = new LinkedList<>();
-        list.add("no lemon no melon");
-        list.add("was it a cat I saw?");
-        list.add("never odd or even");
-        list.add("stressed desserts");
-        list.add("step on no pets");
-        list.add("too hot to hoot");
-        list.add("borrow or rob");
 
-        Integer elementCount = countElements(list);
+        ArrayList<String> newList = new ArrayList<>();
+        newList.add("no lemon no melon");
+        newList.add("was it a cat I saw?");
+        newList.add("never odd or even");
+        newList.add("stressed desserts");
+        newList.add("step on no pets");
+        newList.add("too hot to hoot");
+        newList.add("borrow or rob");
+
+        Integer elementCount = countElements(newList);
 
 // Exercise 3) -3
 
@@ -55,13 +55,13 @@ class Exercise_03 {
         intArray.add(15);
         intArray.add(20);
 
-  //      Integer maxResult = largestEle(intArray);
+        Integer maxResult = largestEle(intArray);
 
     }
-/*
+
     // List can be ArrayList of LinkedList, generic for list type and primitive type?
     // class/ objects or primitive types.
-    private static <E extends List, T extends Number> int largestEle(E <T> list) {
+    private static <E extends Collection, T extends Number> int largestEle(Collection<T> arra) {
         int beginIndex;
         int endIndex;
         int max=0;
@@ -74,7 +74,12 @@ class Exercise_03 {
         System.out.println("Specify end index of range within list: ");
         endIndex = scanner4.nextInt();
 
-        ArrayList<T> sublist = new ArrayList<T>(list.subList(beginIndex, endIndex));
+        //T[] sublist = new T[10];
+        ArrayList<T> sublist = new ArrayList<>();
+
+        for (int i = beginIndex; i>endIndex; i++ ){
+            sublist.add(T arra[i]);
+        }
 
         for (T ele:sublist) {
             if(ele.intValue() >= max){
@@ -82,7 +87,6 @@ class Exercise_03 {
         }
         return max;
     }
-**/
 
     private static <E> E[] swapValues(E[] arra) {
         E tempVar1 = null;
@@ -106,8 +110,7 @@ class Exercise_03 {
         return arra;
     }
 
-    // LinkedList<E> cannot be applied to <String>.... linkedlist is a subclass of Collections??
-    private static <E extends Collection> int countElements(LinkedList<E> list) {
+    private static <E extends Collection, T> int countElements(Collection<T> list) {
         return list.size();
     }
 
