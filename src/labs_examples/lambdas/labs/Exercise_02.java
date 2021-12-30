@@ -35,7 +35,9 @@ public class Exercise_02 {
         List<String> aspectRatios = Arrays.asList("16:9 Landscape", "1:1 Square", "4:5 Vertical", "2:3 Vertical", "9:16 Full Portrait");
         aspectRatios.forEach(ratio -> System.out.println(ratio));
 
-        // demonstrate use of Supplier functional interface 
+        // demonstrate use of Supplier functional interface
+
+
 
     }
 

@@ -20,6 +20,7 @@ class Exercise_03 {
         double sum = sumNums(4.24, 6.26);
 
 // Exercise 3) -2
+    // try arraylist
         LinkedList<String> list = new LinkedList<>();
         list.add("no lemon no melon");
         list.add("was it a cat I saw?");
@@ -29,7 +30,7 @@ class Exercise_03 {
         list.add("too hot to hoot");
         list.add("borrow or rob");
 
- //       Integer elementCount = countElements(list);
+        Integer elementCount = countElements(list);
 
 // Exercise 3) -3
 
@@ -59,6 +60,7 @@ class Exercise_03 {
     }
 /*
     // List can be ArrayList of LinkedList, generic for list type and primitive type?
+    // class/ objects or primitive types.
     private static <E extends List, T extends Number> int largestEle(E <T> list) {
         int beginIndex;
         int endIndex;
