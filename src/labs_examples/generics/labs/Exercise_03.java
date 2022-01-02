@@ -17,7 +17,18 @@ class Exercise_03 {
     public static void main(String[] args) {
 
 // Exercise 3) -1
-        double sum = sumNums(4.24, 6.26);
+        int number1 = 5;
+        int number2 = 14;
+
+        double sumInt = sumNums(number1, number2);
+        System.out.println("Sum of numbers: " +sumInt +"\n");
+
+        double number3 = 6.23;
+        double number4 = 3.14;
+
+        double sumDouble = sumNums(number3, number4);
+        System.out.println("Sum of numbers: " +sumDouble +"\n");
+
 
 // Exercise 3) -2
 
@@ -31,19 +42,21 @@ class Exercise_03 {
         newList.add("borrow or rob");
 
         Integer elementCount = countElements(newList);
+        System.out.println("\n"+"Count of elements: " +elementCount +"\n");
 
 // Exercise 3) -3
 
         Integer[] arra = {20, 5, 19, 30, 6};
-
+        System.out.println("Numbers in array: ");
         for (int ele : arra) {
-            System.out.println(ele);
+            System.out.print(ele + ", ");
         }
 
         Integer[] returnArray = swapValues(arra);
+        System.out.println("Numbers in array post swap: ");
 
-        for (int ele : arra) {
-            System.out.println(ele);
+        for (int ele : returnArray) {
+            System.out.print(ele + ", ");
         }
 
 // Exercise 3) -4
@@ -56,35 +69,45 @@ class Exercise_03 {
         intArray.add(20);
 
         Integer maxResult = largestEle(intArray);
-
+        System.out.println("Largest element in range: " +maxResult +"\n");
     }
 
     // List can be ArrayList of LinkedList, generic for list type and primitive type?
     // class/ objects or primitive types.
-    private static <E extends Collection, T extends Number> int largestEle(Collection<T> arra) {
+    private static <E extends Collection, T extends Number> int largestEle(List<T> arra) {
         int beginIndex;
         int endIndex;
         int max=0;
 
+        System.out.println("\n\n"+"Numbers in array: ");
+        for(T element:arra){
+            System.out.print(element + ", ");
+        }
+
         Scanner scanner3 = new Scanner(System.in);
-        System.out.println("Specify beginning index of range within list: ");
+        System.out.println("\n"+"Specify beginning index of range within list: ");
         beginIndex = scanner3.nextInt();
 
         Scanner scanner4 = new Scanner(System.in);
         System.out.println("Specify end index of range within list: ");
         endIndex = scanner4.nextInt();
 
-        //T[] sublist = new T[10];
         ArrayList<T> sublist = new ArrayList<>();
 
-        for (int i = beginIndex; i>endIndex; i++ ){
-            sublist.add(T arra[i]);
+        int i =1;
+
+        for (T value: arra){
+            if(beginIndex<=i && i<=endIndex) {
+                sublist.add(value);
+            }
+            i++;
         }
 
-        for (T ele:sublist) {
-            if(ele.intValue() >= max){
-                max = ele.intValue();}
+        for (T value: sublist){
+            if(value.intValue() >= max){
+                max = value.intValue();}
         }
+
         return max;
     }
 
@@ -95,7 +118,7 @@ class Exercise_03 {
         int index2;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Specify 1st index of array to be swapped: ");
+        System.out.println("\n"+ "Specify 1st index of array to be swapped: ");
         index1 = scanner.nextInt();
         tempVar1 = arra[index1];
 
@@ -111,6 +134,12 @@ class Exercise_03 {
     }
 
     private static <E extends Collection, T> int countElements(Collection<T> list) {
+
+        System.out.println("Palindromes in collection: ");
+        for(T e : list){
+            System.out.println(e);
+        }
+
         return list.size();
     }
 
