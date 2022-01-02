@@ -29,6 +29,12 @@ class Strings {
         Strings obj = new Strings();
         BiFunction<String, String, String> ref = obj :: myMethod;
         System.out.println(ref.apply(s1,s2));
+
+    // 3) Use of a constructor reference
+        ReportInterface reportGen = Report::new;
+        Report a = reportGen.createReport(12567,"Qualification of Tool XYZ");
+        System.out.println(a.toString());
+        
     }
 
     private static boolean charLessThanTen(String s) {
@@ -51,4 +57,27 @@ class Strings {
         System.out.println("\n" + "Instance Method");
         return String.join(", ",string1, string2);
         }
+}
+
+@FunctionalInterface
+interface ReportInterface{
+    Report createReport(int reportNumber, String reportName);
+}
+
+class Report{
+    int reportNumber;
+    String reportName;
+
+    public Report(int reportNumber, String reportName) {
+        this.reportNumber = reportNumber;
+        this.reportName = reportName;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "reportNumber=" + reportNumber +
+                ", reportName='" + reportName + '\'' +
+                '}';
+    }
 }
