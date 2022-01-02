@@ -34,7 +34,7 @@ class Strings {
         ReportInterface reportGen = Report::new;
         Report a = reportGen.createReport(12567,"Qualification of Tool XYZ");
         System.out.println(a.toString());
-        
+
     }
 
     private static boolean charLessThanTen(String s) {
