@@ -3,6 +3,8 @@ package labs_examples.lambdas.labs;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -29,5 +31,50 @@ import java.util.stream.Stream;
  */
 
 class Example {
-    
-}
+
+    public static void main(String[] args) {
+        range();
+
+        sum();
+
+        int[] arra = {12, 7, 3, 67, 86};
+        mapFunc(arra);
+
+        int filterAvg = (int) filter(arra);
+
+        Integer[] numbers = {23, 7, 62, 3, 11, 9};
+        int sumReduce = reduceSum(numbers);
+
+    }
+
+    //#1 range function
+    private static void range() {
+        IntStream.rangeClosed(1, 15).forEach(System.out::print);
+    }
+
+    //#2 sum function
+    private static void sum() {
+        int rangeSum = IntStream.range(1, 10).sum();
+        System.out.println(rangeSum);
+    }
+
+    //#3 map function
+    private static void mapFunc(int[] array) {
+        int calc = Arrays.stream(array).map(y -> y * 3 - 2).sum();
+        System.out.println(calc);
+    }
+
+    //#4 Filter int<10
+    private static double filter(int[] array){
+        return Arrays.stream(array).filter(y -> y>10).average().orElse(Double.NaN);
+        // reference baeldung.com/java-array-sum-average accessed 04JAN22
+        }
+
+    //#5 reduce function to determine the sum of a list of Integers
+    private static int reduceSum(Integer[] nums){
+        Stream<Integer> s = Arrays.stream(nums);
+        return s.reduce(0,(Integer x, Integer y) -> x + y);
+    }
+
+
+    }
