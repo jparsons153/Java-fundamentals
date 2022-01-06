@@ -3,7 +3,10 @@ package labs_examples.lambdas.labs;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -21,7 +24,7 @@ import java.util.stream.Stream;
  *      5) Demonstrate the reduce() function to determine the sum of a list of Integers
  *      6) Demontsrate how to Stream a text file and print out each line
  *      7) Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
- *          the print out the element at the 1 index for each array.
+ *          then print out the element at the 1 index for each array.
  *      8) Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
  *          the print out the sum of all elements at index 2.
  *      9) Demonstrate the anyMatch() function.
@@ -45,6 +48,11 @@ class Example {
         Integer[] numbers = {23, 7, 62, 3, 11, 9};
         int sumReduce = reduceSum(numbers);
 
+        String textFile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\char_data.txt";
+        streamTxt(textFile);
+
+        splitString(textFile);
+
     }
 
     //#1 range function
@@ -67,7 +75,7 @@ class Example {
     //#4 Filter int<10
     private static double filter(int[] array){
         return Arrays.stream(array).filter(y -> y>10).average().orElse(Double.NaN);
-        // reference baeldung.com/java-array-sum-average accessed 04JAN22
+        // reference baeldung.com/java-array-sum-average, accessed 04JAN22
         }
 
     //#5 reduce function to determine the sum of a list of Integers
@@ -76,5 +84,40 @@ class Example {
         return s.reduce(0,(Integer x, Integer y) -> x + y);
     }
 
+    //#6 Stream a text file and print out each line
+    private static void streamTxt(String filePath){
 
+        Stream<String> txtFile = null;
+        try {
+            txtFile = Files.lines(Paths.get(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        txtFile.forEach(System.out::println);
+        txtFile.close();
     }
+
+    //#7 Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
+    //   then print out the element at the #1 index for each array.
+
+    private static void splitString(String filePath){
+
+        Stream<String> txtFile = null;
+        try {
+            txtFile = Files.lines(Paths.get(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // split to string array and print element [0] - one stream, using Collectors??
+        Stream<String> splitString = null;
+        try {
+            splitString = Files.lines(Paths.get(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<String[]> stringArray = splitString.map(x -> x.split("\n")).collect(Collectors.toList());
+
+        // for each String array, print element [0]. Arrays contain all elements at [0], split by delimiter "space"
+    }
+
+}
