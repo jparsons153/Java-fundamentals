@@ -9,7 +9,7 @@ public class Node<T> {
     // a generic variable to hold the data we want to store in the list
     T data;
     // a "link" to the "next" Node in the LinkedList
-    Node next;
+  public Node next;
 
     // a simple constructor that takes in data
     public Node(T data) {
