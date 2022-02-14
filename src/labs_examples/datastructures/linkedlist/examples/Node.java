@@ -7,7 +7,7 @@ package labs_examples.datastructures.linkedlist.examples;
 public class Node<T> {
 
     // a generic variable to hold the data we want to store in the list
-    T data;
+    public T data;
     // a "link" to the "next" Node in the LinkedList
   public Node next;
 
