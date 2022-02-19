@@ -34,12 +34,12 @@ public class JDBC_Example_1 {
 
 
             String connectionString = "jdbc:mysql://localhost/university?"
-                    + "user=root&password=punqyp-nevxy8-zyVqap"
+                    + "user=root&password=" "
                     + "&allowPublicKeyRetrieval=true";
 
 
             // Example connection String to remote MySQL instance:
-            // "jdbc:mysql://178.34.21.99:3306/codingnomads?user=root&password=3tr0ngP@33W0rd"
+            // "jdbc:mysql://178.34.21.99:3306/codingnomads?user=root&password=" "
 
 
             // Setup the connection with the DB
