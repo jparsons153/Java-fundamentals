@@ -17,10 +17,9 @@ import java.util.ListIterator;
 
 public class NumberLinkedList<T> {
     // TO DO
-    // import access for 'size' method
     // Refractor
     // add two 'helper' methods
-    // ONLY allow users to add and remove elements from the front of the list AND the end of the list
+    // ONLY allow users to add and remove elements from the front of the list AND the end of the list - done
     // instead of using the index in the get() and remove() methods, these methods should get() and remove() based by the Node's value, not it's index
 
     // this "head" variable will always keep track of the first Node in the list.

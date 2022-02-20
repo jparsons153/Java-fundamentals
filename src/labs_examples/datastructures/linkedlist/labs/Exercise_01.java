@@ -83,6 +83,7 @@ class LinkedlistExample {
             System.out.println(elementIterator.next());
         }
 
+        // #15
         someRamblings.clear();
 
     }
