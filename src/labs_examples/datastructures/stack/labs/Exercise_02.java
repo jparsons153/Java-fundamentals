@@ -18,3 +18,39 @@ package labs_examples.datastructures.stack.labs;
  *      TIP: To initialize an new array of a Generic type you can use this:
  *           T[] data = (T[]) new Object[10];
  */
+
+class Exercise_02<T> {
+
+    private T[] data = (T[]) new Object[10];
+
+    int i;
+
+    public void push (T item){
+
+        try{
+            while(data[i] != null) {
+                data[i+1] = data[i];
+        }
+            data[0] = item;
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void pop (T item){
+
+        try{
+            System.out.println("Item at top of the stack ;" +data[0]);
+            data[0] = null;
+
+        }catch(Exception exc){
+            System.out.println("Null pointer exception, stack empty");
+        }
+
+
+
+    }
+
+
+}
