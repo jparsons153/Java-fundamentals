@@ -39,7 +39,7 @@ class Exercise_02<T> {
     }
 
     public void pop (T item){
-
+// #1
         try{
             System.out.println("Item at top of the stack ;" +data[0]);
             data[0] = null;
@@ -47,10 +47,33 @@ class Exercise_02<T> {
         }catch(Exception exc){
             System.out.println("Null pointer exception, stack empty");
         }
-
-
-
     }
 
+    public void resize() {
+        // make a copy of the existing array - done
+        // create a new array twice the size of the old array - done
+        // iterate over the length of the old array - done
+        // call the push() method and this element to the new array - done
+        // catch exceptions - done
+
+        T[] old = data;
+        T[] data = (T[]) new Object[old.length * 2];
+
+        for (int i = 0; i < old.length; i++) {
+            try {
+                T item = old[i];
+                push(item);
+            }catch (Exception exc){exc.printStackTrace();}
+        }
+    }
+
+// #5
+    public int size(){
+        int count = 0;
+        for (int j =0; j<data.length; j++){
+            count ++;
+        }
+        return count;
+    }
 
 }
