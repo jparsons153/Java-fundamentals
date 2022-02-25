@@ -8,12 +8,12 @@ package labs_examples.datastructures.stack.labs;
  *
  *      Your custom Stack class must also do the following: (Ryan Take 2)
  *
- *      1) throw a custom exception when trying to pop an element from an empty Stack
- *      2) resize the Stack (the underlying array) to be twice the size when the Stack is more than 3/4 full
- *      3) resize the Stack (the underlying array) to be half the size when the Stack is more than 1/4 empty
- *      4) contain the methods peekFirst() and peekLast()
- *      5) contain a size() method
- *      6) contain a method to print out the data of all elements in the Stack
+ *      1) throw a custom exception when trying to pop an element from an empty Stack - done
+ *      2) resize the Stack (the underlying array) to be twice the size when the Stack is more than 3/4 full - done
+ *      3) resize the Stack (the underlying array) to be half the size when the Stack is more than 1/4 empty - done
+ *      4) contain the methods peekFirst() and peekLast() - done
+ *      5) contain a size() method - done
+ *      6) contain a method to print out the data of all elements in the Stack - 
  *
  *      TIP: To initialize an new array of a Generic type you can use this:
  *           T[] data = (T[]) new Object[10];
@@ -36,7 +36,8 @@ class Exercise_02<T> {
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
+            resize();
+        }
 
     public void pop (T item){
 // #1
@@ -57,13 +58,32 @@ class Exercise_02<T> {
         // catch exceptions - done
 
         T[] old = data;
-        T[] data = (T[]) new Object[old.length * 2];
+        if (size() > data.length * 0.75) {
 
-        for (int i = 0; i < old.length; i++) {
-            try {
-                T item = old[i];
-                push(item);
-            }catch (Exception exc){exc.printStackTrace();}
+            T[] data = (T[]) new Object[old.length * 2];
+
+            for (int i = 0; i < old.length; i++) {
+                try {
+                    T item = old[i];
+                    push(item);
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                }
+            }
+        } else if (size() < data.length * 0.25) {
+            int intValue = (int)(old.length * 0.5);
+            T[] data = (T[]) new Object[intValue];
+
+            for (int i = 0; i < old.length; i++) {
+                try {
+                    T item = old[i];
+                    push(item);
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                }
+            }
+        } else {
+            return;
         }
     }
 
@@ -76,4 +96,11 @@ class Exercise_02<T> {
         return count;
     }
 
+    public void peekFirst(){
+        System.out.println(data[0]);
+    }
+
+    public void peekLast(){
+        System.out.println(data[data.length-1]);
+    }
 }
