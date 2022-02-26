@@ -23,13 +23,13 @@ class Exercise_02<T> {
 
     private T[] data = (T[]) new Object[10];
 
-    int i;
 
     public void push (T item){
-
+        int i=0;
         try{
             while(data[i] != null) {
                 data[i + 1] = item;
+                i++;
             }
 
         } catch (Exception e){
@@ -49,7 +49,7 @@ class Exercise_02<T> {
         }
     }
 
-    public void resize() {
+     private void resize() {
         // make a copy of the existing array - done
         // create a new array twice the size of the old array - done
         // iterate over the length of the old array - done
@@ -104,8 +104,10 @@ class Exercise_02<T> {
     }
 
     public void print(){
+        int i=0;
         while(data[i] != null){
             System.out.println(data[i]);
+            i++;
         }
     }
 }
