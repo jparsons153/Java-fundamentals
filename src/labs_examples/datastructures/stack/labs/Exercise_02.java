@@ -13,7 +13,7 @@ package labs_examples.datastructures.stack.labs;
  *      3) resize the Stack (the underlying array) to be half the size when the Stack is more than 1/4 empty - done
  *      4) contain the methods peekFirst() and peekLast() - done
  *      5) contain a size() method - done
- *      6) contain a method to print out the data of all elements in the Stack - 
+ *      6) contain a method to print out the data of all elements in the Stack - done
  *
  *      TIP: To initialize an new array of a Generic type you can use this:
  *           T[] data = (T[]) new Object[10];
@@ -102,5 +102,11 @@ class Exercise_02<T> {
 
     public void peekLast(){
         System.out.println(data[data.length-1]);
+    }
+
+    public void print(){
+        while(data[i] != null){
+            System.out.println(data[i]);
+        }
     }
 }
