@@ -29,9 +29,8 @@ class Exercise_02<T> {
 
         try{
             while(data[i] != null) {
-                data[i+1] = data[i];
-        }
-            data[0] = item;
+                data[i + 1] = item;
+            }
 
         } catch (Exception e){
             e.printStackTrace();
@@ -42,8 +41,8 @@ class Exercise_02<T> {
     public void pop (T item){
 // #1
         try{
-            System.out.println("Item at top of the stack ;" +data[0]);
-            data[0] = null;
+            System.out.println("Item at top of the stack ;" +data[data.length-1]);
+            data[data.length-1] = null;
 
         }catch(Exception exc){
             System.out.println("Null pointer exception, stack empty");
@@ -97,11 +96,11 @@ class Exercise_02<T> {
     }
 
     public void peekFirst(){
-        System.out.println(data[0]);
+        System.out.println(data[data.length-1]);
     }
 
     public void peekLast(){
-        System.out.println(data[data.length-1]);
+        System.out.println(data[0]);
     }
 
     public void print(){
