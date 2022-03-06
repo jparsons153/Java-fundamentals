@@ -1,5 +1,7 @@
 package labs_examples.datastructures.hashmap.labs;
 
+import java.util.HashMap;
+
 /**
  *      HashMaps Exercise_02
  *
@@ -11,7 +13,7 @@ package labs_examples.datastructures.hashmap.labs;
  *      3) resize the HashMap when the underlying array is more than half full - done
  *      4) triple the size of the underlying array on resize() - done
  *
- *      5) instead of checking the number of keys to resize, check the number of values
+ *      5) instead of checking the number of keys to resize, check the number of values - done
  *
  *      6) on collisions, add new elements to the front of the LinkedList, not the end - done
  *
@@ -19,7 +21,7 @@ package labs_examples.datastructures.hashmap.labs;
  *          out a message indicating that the element does not exist - done
  *
  *      8) add at least one more method that you think could be useful to the HashMap
- *          review Java's built-in HashMap for inspiration
+ *          review Java's built-in HashMap for inspiration - done
  */
 
 class JohnsCustomHashMap<K, V> {
@@ -29,12 +31,11 @@ class JohnsCustomHashMap<K, V> {
 
     // track the current number of elements in the hashmap
     private int noElements = 0;
+    private int noValues = 0;
 
     //Hashes the given key and returns a table index
     private int hashNumber(K key) {
-        // get the hashCode for the key and mod that hashCode by the length of the array
         int indexNo = Math.abs(key.hashCode() % tableEntry.length);
-        // the result will be the index where we can find and/or place entries
         return indexNo;
     }
 
@@ -51,40 +52,35 @@ class JohnsCustomHashMap<K, V> {
         // create the Entry object containing the key and value that we will store in the underlying array
         Pair<K,V> item = new Pair(key, value);
 
-        // no element at the given index, means no collision
-        // go ahead and simply add the value to the array
+        // no element at the given index, no collision add value to the array
         if (tableEntry[indexNo] == null) {
 
             tableEntry[indexNo] = item;
             noElements++;
+            noValues++;
         }
-        // otherwise, there was a collision
-        // we need iterate through the linked list at that index
+        // else collision iterate through the linked list at that index
         else {
             // get the first Entry (in the linked list) at the given index
             // create new variable for firstIndex
             Pair<K, V> i = tableEntry[indexNo];
             Pair<K, V> firstIndex = i;
 
-            // move each element by one index to make space at the front
-            // index i = index i+1
-            // while i !=null
 
-            // traverse the linked list
+            // traverse the linked list, move each element to next index
             while (i != null) {
                 i = i.next;
             }
 
-            // after we exit the while loop above, we'll be at the end of the linked list
-            // this is where we can add the new Entry
+            // add the new Entry
             firstIndex = item;
             noElements++;
+            noValues++;
         }
 
-        // check for resize
-        if (noElements > tableEntry.length * 0.5) {
-            // the resize method will create a bigger underlying array and
-            // add all values in the existing array to the new, larger array
+        // check for resize using number of values
+        if (noValues > tableEntry.length * 0.5) {
+            // call resize method to add all values to new larger array
             resizeHashmap();
         }
     }
@@ -93,26 +89,20 @@ class JohnsCustomHashMap<K, V> {
      * Resizes the underlying array to double its previous size and copies the old values into it
      */
     private void resizeHashmap() {
-        // make a copy of the existing table and call it "old"
         Pair<K, V>[] old = tableEntry;
-        // create a new Entry[] that is twice the size of the old one
+        // new array 3 times size of previous
         tableEntry = new Pair[old.length * 3];
 
-        // iterate over the length of the old array
+        // get index from 'old', call put() to add to new table
         for (int i = 0; i < old.length; i++) {
             try {
-                // get the Entry at the index of "i" from the "old" table
                 Pair entryNew = old[i];
-                // call the put() method passing the key and value to add this element to the new table
                 putIn((K) entryNew.getKey(), (V) entryNew.getValue());
 
-                // check to see if this entry is actually the start of a linked list
+                // go to end of linkedlist and add element
                 while (entryNew.next != null) {
-                    // if it is, traverse to the next node
                     entryNew = entryNew.next;
-                    // and call the put() method to add this element
                     putIn((K) entryNew.getKey(), (V) entryNew.getValue());
-                    // loop
                 }
             } catch (Exception e) {
                 System.out.println("Element does not exist");
@@ -127,9 +117,8 @@ class JohnsCustomHashMap<K, V> {
      */
     public void removePair(K key) {
 
-        // ensure key exists by calling the get() method
+        // ensure key exists by calling the get() method if null nothing to delete
         if (getKey(key) == null) {
-            // if the get() method returns null, there's nothing to delete
             return;
         }
 
@@ -155,12 +144,7 @@ class JohnsCustomHashMap<K, V> {
             }
         }
 
-        // when we exit the loop above, entry.next will contain the key we're looking for
-        // if we're deleting from the middle of a linked list we need to link
-        // entry.next to entry.next.next - this is basically like turning this list:
-        // a -> b -> c
-        // into this list:
-        // a -> c
+
         if(entryNew.next.next != null){
             entryNew.next = entryNew.next.next;
             noElements--;
@@ -219,6 +203,20 @@ class JohnsCustomHashMap<K, V> {
         return tableEntry.length;
     }
 
+
+    public boolean containsValue(Pair value) {
+        Pair<K,V>[] tab; V v;
+        if ((tab = tableEntry) != null && tableEntry.length > 0) {
+            for (int i = 0; i < tab.length; ++i) {
+                for (Pair<K,V> e = tab[i]; e != null; e = e.next) {
+                    if ((v = e.getValue()) == value ||
+                            (value != null && value.equals(v)))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
 /**
@@ -246,4 +244,5 @@ class Pair<K, V> {
     public void setValue(V value) {
         this.value = value;
     }
+
 }
