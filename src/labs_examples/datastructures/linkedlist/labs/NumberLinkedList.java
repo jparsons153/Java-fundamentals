@@ -1,7 +1,8 @@
 package labs_examples.datastructures.linkedlist.labs;
-import labs_examples.datastructures.linkedlist.*;
 import labs_examples.datastructures.linkedlist.examples.Node;
-import java.util.ListIterator;
+
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  *      LinkedLists - Exercise_02
@@ -16,22 +17,15 @@ import java.util.ListIterator;
  */
 
 public class NumberLinkedList<T> {
-    // TO DO
-    // Refractor
-    // add two 'helper' methods
-    // ONLY allow users to add and remove elements from the front of the list AND the end of the list - done
-    // instead of using the index in the get() and remove() methods, these methods should get() and remove() based by the Node's value, not it's index
 
-    // this "head" variable will always keep track of the first Node in the list.
+    // variable for head Node
     private Node head;
 
     public NumberLinkedList(T... data) {
 
         if (data.length < 1) {
-            // if you don't pass in any data elements it will just instantiate an empty LinkedList (where "head" == null)
             head = null;
         } else {
-            // if you pass in 1 or more elements, each element will be added to the LinkedList by calling the add() method
             for (int i = 0; i < data.length; i++) {
                 add(data[i]);
             }
@@ -39,8 +33,6 @@ public class NumberLinkedList<T> {
     }
 
     public void add(T data) {
-        // call the insert() method, pass in the data as well as the current size of the LinkedList
-        // by calling the size() method which will return the length of the LinkedList
         insert(data, size());
     }
 
@@ -50,16 +42,14 @@ public class NumberLinkedList<T> {
             head = new Node(data);
         } else {
 
-            // make a new reference to the head node that we can use to traverse the list
-            // we do this so we NEVER lose a secure reference to the head node
+            // new reference to the head node
             Node iterator = head;
 
-            // create an empty variable to track the "previous" node in the list as we traverse
+            // track the "previous" node in the list as we traverse
             Node previous = null;
 
             if (index == 0) {
-                // if we hit this "if" block it means the user wants to insert a new node
-                // to the front of the list, insert new node in front
+                // insert a new node to the front of the list
                 head = new Node(data, head);
 
             } else if (index < size()) {
@@ -67,72 +57,47 @@ public class NumberLinkedList<T> {
                 return;
 
             } else {
-                // if we hit this "else" block, it means the user wants to attach the new node to the end of the list
-                // so we need to iterate all the way through list to find last node
-                // we'll know we've hit the last node when "iterator.next" is equal to null
+                // insert new node to the end of the list
                 while (iterator.next != null) {
                     previous = iterator;
                     iterator = iterator.next;
                 }
 
-                // once we exit the loop above, iterator will be referencing the final node in the list
-                // at this point we can attach the new Node to the "next" variable of the final node in th list
                 iterator.next = new Node(data);
             }
         }
     }
 
-    public void remove(int index) {
-        if (index == 0) {
-            // if we hit this "if" block, it means the user wants to delete the first node in the list
-            // so we just set "head" to "head.next" which effectively cuts the first node out of the list
+    public void remove(T data) {
+        if (data == null) {
+            // delete the first node in the list set "head" to "head.next"
             head = head.next;
         }
-        else if (index < size()){
-            // if we hit this "else" block, it means that the user wants to delete a
-            // node in the middle of the list
-            System.out.println("elements can only be removed from the front or end, please try again");
-            return;
-        }
-        else {
-            // if we hit this "else" block, it means the user wants to delete the node at the end of the list
 
-            // creating a new variable that initially references the "head" node
-            // we'll use this new variable to traverse across the list
-            Node iterator = head;
+        else if (data != null) {
+                // delete the node at the end of the list
 
-            // so we need to iterate all the way through list to find last node
-            // we'll know we've hit the last node when "iterator.next" is equal to null
-            while (iterator.next != null) {
-                iterator = iterator.next;
+                Node iterator = head;
+
+                // iterate to find last node
+                while (iterator.next != null) {
+                    iterator = iterator.next;
+                }
+
+                iterator.next = null;
             }
-
-            // once we exit the loop above, "iterator.next" will be referencing the final node in the list
-            // at this point we can assign "iterator.next" to null - effectively "cutting off" the final node
-            iterator.next = null;
         }
-    }
 
-    // get() and remove() methods based on nodes value rather than index
 
-    public T get(int index) {
+    public T get(T data) {
         try {
-            // simple variable to use for looping over the list
-            int count = 0;
 
-
-            // creating a new variable that initially references the "head" node
-            // we'll use this new variable to traverse across the list
             Node iterator = head;
 
-
-            // iterate until index is reach
-            while (count != index) {
+            while (data != null) {
                 iterator = iterator.next;
-                count++;
             }
             return (T) iterator.data;
-
 
         } catch (NullPointerException ex) {
             return null; // list is empty
@@ -155,4 +120,15 @@ public class NumberLinkedList<T> {
         return head == null;
     }
 
+    public Node getFirst() {
+        final Node f = head;
+        if (f == null)
+            throw new NoSuchElementException();
+        return f;
+    }
+
+    public Object peekFirst() {
+        final Node f = head;
+        return f.data;
+    }
 }
