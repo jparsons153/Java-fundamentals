@@ -1,7 +1,6 @@
 package labs_examples.datastructures.hashmap.labs;
 
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  *      HashMaps Exercise_02
@@ -28,42 +27,90 @@ class HashmapsExercise02 {
     public static void main(String[] args) {
 
         linkedList();
+
+        intStack();
     }
 
     // linkedlist
-    public static LinkedList<Integer> linkedList(){
+    public static LinkedList<Integer> linkedList() {
 
-        // create a LinkedList of type String
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
         // add 100 elements to the LinkedList
-        for (int i=0; i<101; i++) {
+        for (int i = 0; i < 101; i++) {
             linkedList.add(i);
         }
 
         // update each element
-        for (int i=0; i<101; i++) {
-            linkedList.set(i,i+10);
+        for (int i = 0; i < 101; i++) {
+            linkedList.set(i, i + 10);
         }
 
         // search for each element
-        for(int j=100; j>0; j--){
-            boolean searchList = linkedList.contains(j+10);
-            System.out.println("\n\nList contains \"LinkedList\": " + searchList);
+        for (int j = 100; j > 0; j--) {
+            boolean searchList = linkedList.contains(j + 10);
+            System.out.println("List contains " + j + " " + searchList);
         }
 
         // delete each element
-        // TO DO fix index out of bounds
-        for (int k=0; k<101; k++) {
-            linkedList.remove(k);
+        linkedList.clear();
+
+        return linkedList;
+    }
+
+    // stack
+    public static Stack<Integer> intStack() {
+        Stack<Integer> intStack = new Stack();
+
+        // add 100 elements
+        for (int i = 0; i < 101; i++) {
+            intStack.push(i);
         }
 
-        // return LinkedList
-/*
-        Iterator i = linkedList.iterator();
-        while(i.hasNext()){
-            System.out.print(i.next()+ " ");
+        // update each element
+        for (int i = 0; i < 101; i++) {
+            intStack.set(i, i + 20);
         }
-*/        return linkedList;
+
+        // search for each element
+        for (int j = 100; j > 0; j--) {
+            int searchStack = intStack.search(j + 20);
+            System.out.println("Stack contains " + j + " " + searchStack);
+        }
+
+        // delete each element
+        for (int k = 100; k > 0; k--) {
+            intStack.pop();
+        }
+
+        return intStack;
     }
+
+    // Queue
+    public static Queue<Integer> intQueue() {
+        PriorityQueue<Integer> intQueue = new PriorityQueue<>();
+
+        // add 100 elements
+        for (int i = 0; i < 101; i++) {
+            intQueue.add(i);
+        }
+
+        // update each element
+        // dequeue and enqueue with updated elements
+
+
+        // search each element
+        for (int j = 100; j > 0; j--) {
+            boolean searchQueue = intQueue.contains(j);
+            System.out.println("Queue contains " + j + searchQueue);
+        }
+
+        // delete each element
+        for (int k = 100; k > 0; k--) {
+            intQueue.remove(k);
+        }
+
+        return intQueue;
+    }
+
 }
