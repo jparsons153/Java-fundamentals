@@ -29,6 +29,10 @@ class HashmapsExercise02 {
         linkedList();
 
         intStack();
+
+        intQueue();
+
+        intHashmap();
     }
 
     // linkedlist
@@ -102,7 +106,7 @@ class HashmapsExercise02 {
         // search each element
         for (int j = 100; j > 0; j--) {
             boolean searchQueue = intQueue.contains(j);
-            System.out.println("Queue contains " + j + searchQueue);
+            System.out.println("Queue contains " + j + " " + searchQueue);
         }
 
         // delete each element
@@ -113,4 +117,32 @@ class HashmapsExercise02 {
         return intQueue;
     }
 
+    // Hashmap
+    public static HashMap<Integer, Integer> intHashmap() {
+
+        HashMap<Integer, Integer> intHashmap = new HashMap<>();
+
+        // add 100 elements
+        for (int i = 0; i < 101; i++) {
+            intHashmap.put(i, i + 10);
+        }
+
+        // update each element
+        for (int j = 0; j < 101; j++) {
+            intHashmap.replace(j, j + 20);
+        }
+
+        // search each element
+        for (int k = 0; k < 101; k++) {
+            int searchMap = intHashmap.get(k);
+            System.out.println("Hashmap contains " + k + " " + searchMap);
+        }
+
+        // delete each element
+        for (int l = 0; l < 101; l++) {
+            intHashmap.remove(l);
+        }
+
+        return intHashmap;
+    }
 }
