@@ -132,10 +132,14 @@ class HashmapsExercise02 {
         // update each element
         // dequeue and enqueue with updated elements
 
+        intQueue.clear();
+        for (int i = 0; i < 101; i++) {
+            intQueue.add(i + 20);
+        }
 
         // search each element
         for (int j = 100; j > 0; j--) {
-            boolean searchQueue = intQueue.contains(j);
+            boolean searchQueue = intQueue.contains(j+20);
            // System.out.println("Queue contains " + j + " " + searchQueue);
         }
 
