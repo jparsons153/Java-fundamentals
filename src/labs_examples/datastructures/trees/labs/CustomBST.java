@@ -1,6 +1,9 @@
 package labs_examples.datastructures.trees.labs;
 
 public class CustomBST {
+    // TO DO
+    // Refractor & change comments
+
         Node root;
         int size;
 
@@ -21,7 +24,7 @@ public class CustomBST {
                 root = new Node(data);
                 size++;
             }
-            // start the recursive insert() method, passing the data and the "root" node
+            // use recursive insert() method to pass the data and root node
             else {
                 insert(data, root);
             }
@@ -35,14 +38,14 @@ public class CustomBST {
                 size++;
             }
 
-            // move to leftChild of tree
+            // left Child of tree
             if (data < node.data) {
-                // recursive call - passing the left child Node (effectively traversing left)
+                // recursive - passing left child Node
                 node.left = insert(data, node.left);
             }
-            // move to rightChild of tree
+            // right Child of tree
             else if (data > node.data){
-                // recursive call - passing the left child Node (effectively traversing left)
+                // recursive - passing right child Node
                 node.right = insert(data, node.right);
             }
             // prevent duplicates
@@ -50,41 +53,34 @@ public class CustomBST {
                 return node;
             }
 
-            // after every insert we'll check to see if the tree needs to be rebalanced
+            // check if tree needs to be rebalanced
             return rebalanceInsert(node, data);
         }
 
         // Rebalance after Insert
-
         private Node rebalanceInsert(Node node, int data) {
 
-            // get heights of child nodes
+            // get heights
             int leftHeight = height(node.left);
             int rightHeight = height(node.right);
 
-            // update height of node to the greatest of its child heights
+            // Find largest child height and update height
             node.height = 1 + Math.max(leftHeight, rightHeight);
 
-            // calculate balance factor of node
+            // compute balance factor
             int balanceFactor = leftHeight - rightHeight;
 
-            // leftChild is bigger and new node is less than leftChild - we need to
-            /// move the current node.leftChild so that
-            // it will become node.rightChild and the new node that we're
-            // inserting will become node.leftChild
+            // Re-balance depending on whether left or right is larger
             if (balanceFactor > 1 && data < node.left.data) {
                 return rotateRight(node);
             }
-            // rightChild is bigger and new node is greater than rightChild - inverse of
-            // above section - need to move
-            // current right child to left child because the node we're inserting is larger
-            // than right chuild
+
             if (balanceFactor < -1 && data > node.right.data) {
                 return rotateLeft(node);
             }
             // leftChild is bigger and new node is greater than leftChild
             if (balanceFactor > 1 && data > node.left.data) {
-                // rotate leftChild first to get to simple case
+                // rotate left 
                 node.left = rotateLeft(node.left);
                 // then do simple rotation
                 return rotateRight(node);
@@ -290,6 +286,38 @@ public class CustomBST {
         }
 
         return node;
+    }
+
+    public void printInorderRecursive(Node node) {
+        if (node == null)
+            return;
+        // first, recursively traverse all the way down the left side of the tree
+        printInorderRecursive(node.left);
+        // then print out the data at each node
+        System.out.print(node.data + " ");
+        // then, recurse down the right side (of each subtree)
+        printInorderRecursive(node.right);
+    }
+
+    public void printPreorderRecursive(Node node) {
+        if (node == null) return;
+        // print out the data first
+        System.out.print(node.data + " ");
+        // recurse down the left tree
+        printPreorderRecursive(node.left);
+        // recurse down the right tree
+        printPreorderRecursive(node.right);
+    }
+
+    public void printPostorderRecursive(Node node) {
+        if (node == null)
+            return;
+        // first recur down the left subtree
+        printPostorderRecursive(node.left);
+        // then recur down then right subtree
+        printPostorderRecursive(node.right);
+        // now print the data at each node
+        System.out.print(node.data + " ");
     }
 
     private int height(Node node) {

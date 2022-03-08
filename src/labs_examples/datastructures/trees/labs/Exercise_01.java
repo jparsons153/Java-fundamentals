@@ -10,8 +10,8 @@ package labs_examples.datastructures.trees.labs;
         3.) Retrieve elements - done
         4.) Update elements
         5.) Delete elements - done
-        6.) Print elements (Bonus: try in-order traversal, pre-order traversal, post-order traversal)
-        7.) Keep the tree well balanced
+        6.) Print elements (Bonus: try in-order traversal, pre-order traversal, post-order traversal) - done
+        7.) Keep the tree well balanced - done
 
  */
 public class Exercise_01{
@@ -34,9 +34,17 @@ public class Exercise_01{
         // Delete elements
         newBST.remove(3);
 
+        // print in-order traversal
+        newBST.printInorderRecursive(newBST.root);
+        System.out.println("\n");
 
+        // print pre-order traversal
+        newBST.printPreorderRecursive(newBST.root);
+        System.out.println("\n");
 
-
+        // post-order traversal
+        newBST.printPostorderRecursive(newBST.root);
+        System.out.println("\n");
 
     }
 }
