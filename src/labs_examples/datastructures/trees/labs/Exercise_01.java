@@ -8,7 +8,7 @@ package labs_examples.datastructures.trees.labs;
         1.) Create a new CustomBST - done
         2.) Insert new elements - done
         3.) Retrieve elements - done
-        4.) Update elements
+        4.) Update elements - done
         5.) Delete elements - done
         6.) Print elements (Bonus: try in-order traversal, pre-order traversal, post-order traversal) - done
         7.) Keep the tree well balanced - done
@@ -30,6 +30,7 @@ public class Exercise_01{
         Boolean bool = newBST.search(10);
 
         // Update elements
+        newBST.add(newBST.root);
 
         // Delete elements
         newBST.remove(3);

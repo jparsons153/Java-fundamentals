@@ -80,7 +80,7 @@ public class CustomBST {
             }
             // leftChild is bigger and new node is greater than leftChild
             if (balanceFactor > 1 && data > node.left.data) {
-                // rotate left 
+                // rotate left
                 node.left = rotateLeft(node.left);
                 // then do simple rotation
                 return rotateRight(node);
@@ -286,6 +286,34 @@ public class CustomBST {
         }
 
         return node;
+    }
+
+    public static int mod(Node root){
+            if (root == null){
+                return 0;
+            }
+            return root.data + mod(root.left) + mod(root.right);
+    }
+
+    public static int add(Node root, int result) {
+        if (root == null) {
+            return result;
+        }
+
+        result = add(root.left, result);
+
+        result = root.data + 10;
+
+        result = add(root.right, result);
+
+        root.data+= result;
+
+        return result;
+    }
+
+    public static void add(Node root){
+            int result = mod(root);
+            add(root, result);
     }
 
     public void printInorderRecursive(Node node) {
