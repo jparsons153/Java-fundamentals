@@ -34,7 +34,7 @@ public class JDBC_Example_1 {
 
 
             String connectionString = "jdbc:mysql://localhost/university?"
-                    + "user=root&password=" "
+                    + "user=root&password= punqyp-nevxy8-zyVqap"
                     + "&allowPublicKeyRetrieval=true";
 
 

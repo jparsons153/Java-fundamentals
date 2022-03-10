@@ -6,34 +6,64 @@
  *
  *      1.) If you haven't already, create the college database as instructed here:
  *              https://platform.codingnomads.co/learn/mod/page/view.php?id=2133
- *      2.) Create a new table "students" with the following fields:
+ *      2.) Create a new table "students" with the following fields: - done
  *          a. id (auto increment)
  *          b. first_name
  *          c. age
  *
- *      3.) Create a new table "teachers_students" with the following fields:
+ *      3.) Create a new table "teachers_students" with the following fields: - done
  *          a. id (auto increment)
  *          b. student_id
  *          c. teacher_id
  *
- *      4.) Create a new table "teachers" with the following fields:
+ *      4.) Create a new table "teachers" with the following fields: - done
  *          a. id (auto increment)
  *          b. first_name
  *          c. last_name
  *          d. subject
  *
- *      5.) Create the appropriate foreign key constraints in the "teachers_students" table.
+ *      5.) Create the appropriate foreign key constraints in the "teachers_students" table. - done
  *
  *      6.) Populate each table with at least 5 records. Use the "teachers_students" to associate various
- *          teachers with various students.
+ *          teachers with various students. - done
  *
- *      7.) Write queries (and paste them below) for each of the following tasks:
+ *      7.) Write queries (and paste them below) for each of the following tasks: -done
  *          a. select all students
- *          b. select all teacher who teach "Math" (choose a subject you included)
- *          c. use a join query to select all students with a certain teacher
- *          d. use a join query to select all students with taking a certain subject
- *          e. update a record in the student table
- *          f. add a record to the teacher table
+               SELECT * FROM university.students;
+
+ *          b. select all teacher who teach "Math" (choose a subject you included) - done
+                SELECT * FROM university.teachers WHERE subject = "Maths";
+
+ *          c. use a join query to select all students with a certain teacher - done
+                SELECT s.first_name, s.last_name, t.first_name, t.last_name
+                FROM students s
+                INNER JOIN teachers_students ts
+                     ON s.id = ts.student_id
+                INNER JOIN teachers t
+                	 ON t.id = ts.teacher_id
+                WHERE t.last_name = "Smith";
+
+ *          d. use a join query to select all students with taking a certain subject - done
+                SELECT s.first_name, s.last_name, c.name
+                FROM students s
+                INNER JOIN students_courses sc
+                     ON s.id = sc.student_id
+                INNER JOIN courses c
+                	 ON c.id = sc.course_id
+                WHERE c.name = "Math";
+
+ *          e. update a record in the student table - done
+                 SET SQL_SAFE_UPDATES = 0;
+                 UPDATE university.courses
+                 SET name = "MathPhysics"
+                 WHERE name = "physics";
+
+ *          f. add a record to the teacher table - done
+                 INSERT INTO university.students
+                    (first_name, last_name, email)
+                 VALUES
+                    ("Tim", "Wood", "tim@codingnomads.co");
+
  *
  *       8.) Export the schema to a dump file and copy it to this folder.
  *
