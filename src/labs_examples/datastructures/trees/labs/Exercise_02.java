@@ -15,3 +15,26 @@ package labs_examples.datastructures.trees.labs;
     Here is a fantastic set of relevant interview questions: https://www.techiedelight.com/trie-interview-questions/
 
  */
+
+// reference https://www.techiedelight.com/implement-trie-data-structure-java/ accessed 10MAR22
+
+public class Exercise_02 {
+
+    public static void main(String[] args) {
+
+        Trie trie = new Trie();
+
+        trie.insert("the");
+        trie.insert("that");
+        trie.insert("then");
+        trie.insert("do");
+        trie.insert("does");
+
+        System.out.println(trie.search("the"));
+        System.out.println(trie.search("that"));
+        System.out.println(trie.search("then"));
+        System.out.println(trie.search("do"));
+        System.out.println(trie.search("does"));
+
+    }
+}
