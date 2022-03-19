@@ -84,9 +84,22 @@
             WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time LIKE "2022-%%-%% %";
 
 *       8.) Insert records for new flights between airports
+            INSERT INTO airtravel.flights
+             (Flight_No, departure_time, arrival_time, Airport_depart, Airport_arrive, NumPassengers, Plane_ID)
+            VALUES
+             ("BA550","2022-01-01 11:55:00","2022-01-01 13:05:00", "SNN", "DUB", 399, 302);
+
 *       9.) Insert records for new tickets and passengers on specific flights
+            INSERT INTO airtravel.passengers
+             (Booking_ref,First_name, Last_name, Date_of_birth, Address, Passengers, Flight_details, Meal_preference)
+            VALUES
+             (100120,"Joe", "Smith", "1948-09-09", "12 Bristol st", 1, "BA4552022-01-10 15:55:00", "N/A");
+
 *       10.) Update meal preference (or something similar) for a specific passenger on a specific flight
 *       Bonus: Have some fun - get creative - what else can you do? Flex those SQL muscles and show us what
 *           you've got! :)
-*
+*            UPDATE airtravel.passengers
+             SET Meal_preference = "Vegetrian"
+             WHERE Booking_ref = 100103;
+
 */
