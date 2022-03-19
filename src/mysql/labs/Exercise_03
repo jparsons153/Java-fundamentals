@@ -4,13 +4,85 @@
 *
 *   Now that you have your air travel database all set up and populated, please demonstrate how to:
 *
-*       1.) Query all flights on a specific day
-*       2.) Query all flights between two specific cities on a specific day
-*       3.) Query all passengers on a specific flight between two specific cities today
-*       4.) Query the flight information for a specific passenger on a specific flight
-*       5.) Query the passenger information for a specific user on a specific flight yesterday
-*       6.) Query the number of flights between two specific cities this week, month, and year
+*       1.) Query all flights on a specific day - 2022-03-01
+                SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+                FROM passengers
+                INNER JOIN flights
+                ON passengers.flight_details = flights.flight_details
+                WHERE departure_time LIKE "2022-03-01 %";
+
+*       2.) Query all flights between two specific cities on a specific day - LHR/DUB 2022-03-01
+                SELECT flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time, planes.Air_carrier, planes.make_model
+                FROM flights
+                INNER JOIN planes
+                ON flights.Plane_ID = planes.Plane_ID
+                WHERE Airport_depart = "LHR" AND Airport_arrive = "DUB";
+
+*       3.) Query all passengers on a specific flight between two specific cities today - 2022-03-19
+                SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+                FROM passengers
+                INNER JOIN flights
+                ON passengers.flight_details = flights.flight_details
+                WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time LIKE "2022-03-19 %";
+
+*       4.) Query the flight information for a specific passenger on a specific flight - "Bloggs" & EI154
+                SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+                FROM passengers
+                INNER JOIN flights
+                ON passengers.flight_details = flights.flight_details
+                WHERE Last_name = "Bloggs" AND Flight_No = "EI154";
+
+*       5.) Query the passenger information for a specific user on a specific flight yesterday - BA455 2022-03-18
+                SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+                FROM passengers
+                INNER JOIN flights
+                ON passengers.flight_details = flights.flight_details
+                WHERE Last_name = "Smith" AND departure_time LIKE "2022-03-18 %";
+
+*       6.) Query the number of flights between two specific cities this week, month, and year - LHR / DUB
+            // week
+            SELECT flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time, planes.Air_carrier, planes.make_model
+            FROM flights
+            INNER JOIN planes
+            ON flights.Plane_ID = planes.Plane_ID
+            WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time BETWEEN "2022-03-12 %" AND "2022-03-19 %";
+
+            // month
+            SELECT flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time, planes.Air_carrier, planes.make_model
+            FROM flights
+            INNER JOIN planes
+            ON flights.Plane_ID = planes.Plane_ID
+            WHERE Airport_depart = "LHR" AND Airport_arrive = "DUB" AND departure_time LIKE "%%-03-%% %";
+
+            // year
+            SELECT flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time, planes.Air_carrier, planes.make_model
+            FROM flights
+            INNER JOIN planes
+            ON flights.Plane_ID = planes.Plane_ID
+            WHERE Airport_depart = "LHR" AND Airport_arrive = "DUB" AND departure_time LIKE "2022-%%-%% %";
+
 *       7.) Query the number of passengers that travelled between two specific cities today, this week, month and year
+            // week
+            SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+            FROM passengers
+            INNER JOIN flights
+            ON passengers.flight_details = flights.flight_details
+            WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time BETWEEN "2022-03-12 %" AND "2022-03-19 %";
+
+            // month
+            SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+            FROM passengers
+            INNER JOIN flights
+            ON passengers.flight_details = flights.flight_details
+            WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time LIKE "%%-03-%% %";
+
+            // year
+            SELECT passengers.First_name, passengers.Last_name, passengers.Passengers, flights.Flight_No, flights.Airport_depart, flights.Airport_arrive, flights.departure_time
+            FROM passengers
+            INNER JOIN flights
+            ON passengers.flight_details = flights.flight_details
+            WHERE Airport_depart = "LGW" AND Airport_arrive = "GNV" AND departure_time LIKE "2022-%%-%% %";
+
 *       8.) Insert records for new flights between airports
 *       9.) Insert records for new tickets and passengers on specific flights
 *       10.) Update meal preference (or something similar) for a specific passenger on a specific flight
