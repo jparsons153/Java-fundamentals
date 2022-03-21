@@ -21,6 +21,8 @@ package mysql.labs;
 *
  */
 
+import java.sql.*;
+
 public class Exercise_04 {
 
     public static void main(String[] args) {
@@ -37,11 +39,58 @@ public class Exercise_04 {
         queryPassenger(...);
         updatePassenger(...);
         deletePassenger(...);
-
         ...
 
-
          */
+
+        Connection connection = null;
+        Statement statement = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            String connectionString = "jdbc:mysql://localhost/university?"
+                    + "user=root&password= ******"  // insert password
+                    + "&allowPublicKeyRetrieval=true";
+
+            connection = DriverManager.getConnection(connectionString);
+
+            // call methods here within try / catch block
+            createFlight(connection, preparedStatement);
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occured - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+    private static void createFlight(Connection connection, PreparedStatement preparedStatement) {
+
+        preparedStatement = connection.prepareStatement
+                ("Insert into airtravel database(flightindex,Flight_no,departure_time,arrival_time,Airport_depart, Airport_arrive,NumPassengers, PlaneID))" + "values (?,?,?,?,?,?,?,?)");
+        preparedStatement.setInt(1, 18);
+        preparedStatement.setString(2, "BA314");
+        preparedStatement.setTime(3, 10:15:00, 2022 - 03 - 21); // date Time method?
+        preparedStatement.setTime(4, 12:15:00, 2022 - 03 - 21); // date Time method?
+        preparedStatement.setString(5, "LHR");
+        preparedStatement.setString(6, "MUN");
+        preparedStatement.setInt(7, 399);
+        preparedStatement.setInt(8, 101);
+        preparedStatement.executeUpdate();
+    }
 }
