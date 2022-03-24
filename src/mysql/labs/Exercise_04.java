@@ -30,9 +30,9 @@ public class Exercise_04 {
         Just as a casual example - each of these operations should be in it's own method. Feel free to
         create all required classes/methods to accomplish this.
 
-        createFlight(...);
-        queryFlight(...);
-        updateFlight(...);
+        createFlight(...); - done
+        queryFlight(...); - done
+        updateFlight(...); 
         deleteFlight(...);
 
         createPassenger(...);
@@ -61,6 +61,8 @@ public class Exercise_04 {
             // call methods here within try / catch block
             createFlight(connection, preparedStatement);
 
+            queryFlights(connection,statement, resultSet);
+
         } catch (SQLException exc) {
             System.out.println("Exception occurred");
             exc.printStackTrace();
@@ -79,18 +81,36 @@ public class Exercise_04 {
         }
     }
 
-    private static void createFlight(Connection connection, PreparedStatement preparedStatement) {
+    private static void createFlight(Connection connection, PreparedStatement preparedStatement) throws SQLException{
 
-        preparedStatement = connection.prepareStatement
-                ("Insert into airtravel database(flightindex,Flight_no,departure_time,arrival_time,Airport_depart, Airport_arrive,NumPassengers, PlaneID))" + "values (?,?,?,?,?,?,?,?)");
-        preparedStatement.setInt(1, 18);
-        preparedStatement.setString(2, "BA314");
-        preparedStatement.setTime(3, 10:15:00, 2022 - 03 - 21); // date Time method?
-        preparedStatement.setTime(4, 12:15:00, 2022 - 03 - 21); // date Time method?
-        preparedStatement.setString(5, "LHR");
-        preparedStatement.setString(6, "MUN");
-        preparedStatement.setInt(7, 399);
-        preparedStatement.setInt(8, 101);
-        preparedStatement.executeUpdate();
+            preparedStatement = connection.prepareStatement
+                    ("Insert into airtravel database(flightindex,Flight_no,departure_time,arrival_time,Airport_depart, Airport_arrive,NumPassengers, PlaneID))" + "values (?,?,?,?,?,?,?,?)");
+            preparedStatement.setInt(1, 18);
+            preparedStatement.setString(2, "BA314");
+            preparedStatement.setTime(3, 10:15:00, 2022 - 03 - 21); // date Time method?
+            preparedStatement.setTime(4, 12:15:00, 2022 - 03 - 21); // date Time method?
+            preparedStatement.setString(5, "LHR");
+            preparedStatement.setString(6, "MUN");
+            preparedStatement.setInt(7, 399);
+            preparedStatement.setInt(8, 101);
+            preparedStatement.executeUpdate();
+    }
+
+    private static void queryFlights(Connection connection, Statement statement, ResultSet resultSet) throws SQLException{
+
+        statement = connection.createStatement();
+
+        resultSet = statement.executeQuery("select * from airtravel.flights;");
+
+        while(resultSet.next()){
+            System.out.println(resultSet.getInt("flightindex"));
+            System.out.println(resultSet.getString("Flight_no"));
+            System.out.println(resultSet.getTime("departure_time"));
+            System.out.println(resultSet.getTime("arrival_time"));
+            System.out.println(resultSet.getString("Airport_depart"));
+            System.out.println(resultSet.getString("Airport_arrive"));
+            System.out.println(resultSet.getInt("NumPassengers"));
+            System.out.println(resultSet.getInt("PlaneID"));
+        }
     }
 }
