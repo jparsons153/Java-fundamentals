@@ -73,19 +73,19 @@ class Example {
     }
 
     //#4 Filter int<10
-    private static double filter(int[] array){
-        return Arrays.stream(array).filter(y -> y>10).average().orElse(Double.NaN);
+    private static double filter(int[] array) {
+        return Arrays.stream(array).filter(y -> y > 10).average().orElse(Double.NaN);
         // reference baeldung.com/java-array-sum-average, accessed 04JAN22
-        }
+    }
 
     //#5 reduce function to determine the sum of a list of Integers
-    private static int reduceSum(Integer[] nums){
+    private static int reduceSum(Integer[] nums) {
         Stream<Integer> s = Arrays.stream(nums);
-        return s.reduce(0,(Integer x, Integer y) -> x + y);
+        return s.reduce(0, (Integer x, Integer y) -> x + y);
     }
 
     //#6 Stream a text file and print out each line
-    private static void streamTxt(String filePath){
+    private static void streamTxt(String filePath) {
 
         Stream<String> txtFile = null;
         try {
@@ -100,24 +100,24 @@ class Example {
     //#7 Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
     //   then print out the element at the #1 index for each array.
 
-    private static void splitString(String filePath){
+    private static void splitString(String filePath) {
 
-        Stream<String> txtFile = null;
         try {
-            txtFile = Files.lines(Paths.get(filePath));
+            Stream<String> splitString = Files.lines(Paths.get(filePath));
+
+            splitString.map(x -> x.split(" "))
+                    .filter(x -> x.length == 3)
+                    .filter(x -> x.length == 3)
+                    .filter(x -> Integer.parseInt(x[1]) > 15)
+                    .forEach(x -> System.out.println(x[0] + "  " + x[1] + "  " + x[2]));
+            splitString.close();
+
+
+            // List<String[]> stringIndex = splitString.map(x -> x.split("\n"));
+
+            // for each String array, print element [0]. Arrays contain all elements at [0], split by delimiter "space"
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // split to string array and print element [0] - one stream, using Collectors??
-        Stream<String> splitString = null;
-        try {
-            splitString = Files.lines(Paths.get(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<String[]> stringArray = splitString.map(x -> x.split("\n")).collect(Collectors.toList());
-
-        // for each String array, print element [0]. Arrays contain all elements at [0], split by delimiter "space"
     }
-
 }
