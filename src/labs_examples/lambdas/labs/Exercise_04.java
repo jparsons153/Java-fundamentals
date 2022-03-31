@@ -3,10 +3,7 @@ package labs_examples.lambdas.labs;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -15,18 +12,18 @@ import java.util.stream.Stream;
  *
  *      Stream API Labs
  *
- *      1) Demonstrate the use of the range function to print out the numbers 1 through 15 (inclusive)
- *      2) Demonstrate the use of the sum function to determine the range of a set of numbers.
+ *      1) Demonstrate the use of the range function to print out the numbers 1 through 15 (inclusive) - done
+ *      2) Demonstrate the use of the sum function to determine the range of a set of numbers. - done
  *      3) Demonstrate the use of the map() function to alter each int in a List of Integers, then use the sum function
- *          to get the sum of the modified list
+ *          to get the sum of the modified list - done
  *      4) Demontrate the filter function by filtering out all Integers that are less than 10 - then use the average
- *          function to average the remaining numbers, assign this result to an int variable.
- *      5) Demonstrate the reduce() function to determine the sum of a list of Integers
- *      6) Demontsrate how to Stream a text file and print out each line
+ *          function to average the remaining numbers, assign this result to an int variable. - done
+ *      5) Demonstrate the reduce() function to determine the sum of a list of Integers - done
+ *      6) Demontsrate how to Stream a text file and print out each line - done
  *      7) Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
- *          then print out the element at the 1 index for each array.
+ *          then print out the element at the 1 index for each array. - done
  *      8) Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
- *          the print out the sum of all elements at index 2.
+ *          the print out the sum of all elements at index 2. - map to int??
  *      9) Demonstrate the anyMatch() function.
  *      10) Demonstrate the allMatch() function.
  *      11) Demonstrate the collect() terminal operation to store resulting values into a List
@@ -49,9 +46,15 @@ class Example {
         int sumReduce = reduceSum(numbers);
 
         String textFile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\char_data.txt";
+        String textLabfile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\lambdas\\labs\\stream_text_lab.csv";
+
         //streamTxt(textFile);
 
-        splitString();
+        printIndexOne(textLabfile);
+
+        // sumIndexTwo(textLabfile);
+
+        anyMatch(textLabfile);
 
     }
 
@@ -100,9 +103,7 @@ class Example {
     //#7 Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
     //   then print out the element at the #1 index for each array.
 
-    private static void splitString() {
-
-        String textLabfile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\lambdas\\labs\\stream_text_lab.csv";
+    private static void printIndexOne(String textLabfile) {
 
         try {
             Stream<String> splitString = Files.lines(Paths.get(textLabfile));
@@ -118,7 +119,44 @@ class Example {
 
     // #8 Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
     //    then print out the sum of all elements at index 2.
+/*
+    private static void sumIndexTwo(String textLabfile) {
 
-    
+        try {
+            Stream<String> splitString = Files.lines(Paths.get(textLabfile));
 
+            // split lines into string arrays
+            // filter to elements at index [2]
+            // map to Int
+            // sum elements
+
+            int sum = splitString.map(x -> x.split(","))
+                    .skip(2)
+                    .reduce(0, (x, y) -> x + y);
+            splitString.close();
+
+            System.out.println("Sum = " + sum);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+*/
+    // #9 Demonstrate the anyMatch() function
+
+    private static void anyMatch(String textLabfile) {
+
+        try {
+            Stream<String> splitString = Files.lines(Paths.get(textLabfile));
+
+            boolean containsWorld = splitString.anyMatch(s -> s.contains("World"));
+
+            System.out.println("Does the text file contain the word 'World' " + containsWorld);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // #10 Demonstrate the allMatch() function
 }
