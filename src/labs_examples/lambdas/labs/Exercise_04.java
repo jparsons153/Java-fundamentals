@@ -49,9 +49,9 @@ class Example {
         int sumReduce = reduceSum(numbers);
 
         String textFile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\files\\char_data.txt";
-        streamTxt(textFile);
+        //streamTxt(textFile);
 
-        splitString(textFile);
+        splitString();
 
     }
 
@@ -100,24 +100,25 @@ class Example {
     //#7 Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
     //   then print out the element at the #1 index for each array.
 
-    private static void splitString(String filePath) {
+    private static void splitString() {
+
+        String textLabfile = "C:\\Users\\User\\Documents\\labs\\online-java-fundamentals\\src\\labs_examples\\lambdas\\labs\\stream_text_lab.csv";
 
         try {
-            Stream<String> splitString = Files.lines(Paths.get(filePath));
+            Stream<String> splitString = Files.lines(Paths.get(textLabfile));
 
-            splitString.map(x -> x.split(" "))
-                    .filter(x -> x.length == 3)
-                    .filter(x -> x.length == 3)
-                    .filter(x -> Integer.parseInt(x[1]) > 15)
-                    .forEach(x -> System.out.println(x[0] + "  " + x[1] + "  " + x[2]));
+            splitString.map(x -> x.split(","))
+                    .forEach(x -> System.out.println(x[1]));
             splitString.close();
 
-
-            // List<String[]> stringIndex = splitString.map(x -> x.split("\n"));
-
-            // for each String array, print element [0]. Arrays contain all elements at [0], split by delimiter "space"
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    // #8 Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
+    //    then print out the sum of all elements at index 2.
+
+    
+
 }
