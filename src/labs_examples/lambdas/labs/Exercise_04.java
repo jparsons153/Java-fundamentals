@@ -62,6 +62,8 @@ class Example {
 
         collectmethod(textLabfile);
 
+        sumIndexTwo(textLabfile);
+
     }
 
     //#1 range function
@@ -125,29 +127,39 @@ class Example {
 
     // #8 Demonstrate how to Stream the stream_text_lab.csv file in this package. Split the lines into String arrays,
     //    then print out the sum of all elements at index 2.
-/*
+
     private static void sumIndexTwo(String textLabfile) {
 
         try {
-            Stream<String> splitString = Files.lines(Paths.get(textLabfile));
+           // Stream<String> splitString = Files.lines(Paths.get(textLabfile));
 
-            // split lines into string arrays
+            // split lines into string arrays [x11] [x12] [x13]
+            //                                [x21] [x22] [x23]
             // filter to elements at index [2]
             // map to Int
             // sum elements
 
-            int sum = splitString.map(x -> x.split(","))
-                    .skip(2)
-                    .reduce(0, (x, y) -> x + y);
-            splitString.close();
+            //IntStream.range()
 
-            System.out.println("Sum = " + sum);
+           List<String> index2 = Files.lines(Paths.get(textLabfile))
+                    .map(x -> x.split(","))
+                    .filter(x -> Character.isDigit(x))
+                    .flatMap(Arrays::stream)
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            System.out.println("Numbers in textlabFile :" + "\n");
+
+           index2.forEach(i -> System.out.println(i));
+
+
+          //  System.out.println("Sum = " + sum);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-*/
+
     // #9 Demonstrate the anyMatch() function
 
     private static void anymatch(String textLabfile) {
