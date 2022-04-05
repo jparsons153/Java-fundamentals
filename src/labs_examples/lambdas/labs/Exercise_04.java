@@ -131,29 +131,12 @@ class Example {
     private static void sumIndexTwo(String textLabfile) {
 
         try {
-           // Stream<String> splitString = Files.lines(Paths.get(textLabfile));
+           Stream<String> splitString = Files.lines(Paths.get(textLabfile));
 
-            // split lines into string arrays [x11] [x12] [x13]
-            //                                [x21] [x22] [x23]
-            // filter to elements at index [2]
-            // map to Int
-            // sum elements
+            Double sum = splitString.map(x -> x.split(","))
+                    .mapToDouble(b -> Double.parseDouble(b[2])).sum();
 
-            //IntStream.range()
-
-           List<String> index2 = Files.lines(Paths.get(textLabfile))
-                    .map(x -> x.split(","))
-                    .filter(x -> Character.isDigit(x))
-                    .flatMap(Arrays::stream)
-                    .distinct()
-                    .collect(Collectors.toList());
-
-            System.out.println("Numbers in textlabFile :" + "\n");
-
-           index2.forEach(i -> System.out.println(i));
-
-
-          //  System.out.println("Sum = " + sum);
+            System.out.println("Numbers in textlabFile :" + sum);
 
         } catch (IOException e) {
             e.printStackTrace();
